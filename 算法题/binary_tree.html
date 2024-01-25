@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+    //解析 Depth-First Algorithm-------难点
+    // class Node{
+    //   constructor(value){
+    //     this.value=value
+    //     this.left=null
+    //     this.right=null
+    //   }
+    // }
+    //创建每个node
+    // const a=new Node('a')
+    // const b = new Node('b')
+    // const c = new Node('c')
+    // const d = new Node('d')
+    // const e = new Node('e')
+    // const f = new Node('f')
+
+    //将每个node连接起来，建立binary search tree
+    // a.left=b
+    // a.right=c
+    // b.left=d
+    // b.right=e
+    // c.right=f
+    //console.log(a)
+    //利用iteration来search 每一个node中的value
+    //search 方式用的就是 Depth-First traversal
+
+
+    
+    //方法1: 使用的是iteration
+    // function solution(nodes){
+    //   let stack=[nodes]
+    //   let arr=[]
+    //   while(stack.length>0){
+    //     let currentNode = stack.pop()
+    //     arr.push(currentNode.value)
+    //     if (currentNode.right !== null) {
+    //       stack.push(currentNode.right)
+    //     }
+    //     if (currentNode.left !== null) {
+    //       stack.push(currentNode.left)
+    //     }
+    //   }
+    //   return arr
+      
+      
+
+    // }
+
+    // console.log(solution(a))
+
+//方法2： 使用的是recursion，代码更加简洁
+
+
+// function solution(nodes){
+//   let arr = []
+//   function recursion(node){
+//     if (node === null) {
+//       return
+//     }
+//     //arr.push(node.value)//pre-order:先将parent 找到并push
+//     //因为一找到parent就直接push，无论后面如何进行
+//     recursion(node.left)
+//    //arr.push(node.value)//in-order:按照从左到右，从小到大排列
+//    //在中间push就是必须要上面的left操作全部完成之后才能push，然后再进行right side的操作（之前的值先放好，等待child处理完后再处理），
+//     recursion(node.right)
+//      arr.push(node.value)//post-order:按照从左到右的最小child开始数到parent
+//      //node在左右child都是null之后才能push node的value值
+
+//   }
+//   recursion(nodes)
+//   return arr
+
+// }
+// console.log(solution(a))
+
+//使用的是recursion，求Sum of all values
+//   class Nodes {
+//     constructor(value) {
+//       this.value = value
+//       this.left = null
+//       this.right = null
+//     }
+//   }
+ 
+//   const aa = new Nodes(20)
+//   const bb = new Nodes(10)
+//   const cc = new Nodes(30)
+//   const dd = new Nodes(5)
+//   const ee = new Nodes(15)
+//   const ff = new Nodes(35)
+
+  
+//   aa.left = bb
+//   aa.right = cc
+//   bb.left = dd
+//   bb.right = ee
+//   cc.right = ff
+
+// function solution(nodes){
+//   if (nodes === null) {
+//     return 0
+//   }
+//   let sum = 0
+//   function recursion(node) {
+//     if (node === null) {
+//       return
+//     }
+//     sum+=node.value
+    
+//     recursion(node.left)
+//     recursion(node.right)
+    
+
+//   }
+//   recursion(nodes)
+//   return sum
+
+// }
+//   console.log(solution(aa))
+
+//使用的是recursion，求Sum of all values-----更精简的方法
+  class Nodes {
+    constructor(value) {
+      this.value = value
+      this.left = null
+      this.right = null
+    }
+  }
+
+  const aa = new Nodes(20)
+  const bb = new Nodes(10)
+  const cc = new Nodes(30)
+  const dd = new Nodes(5)
+  const ee = new Nodes(15)
+  const ff = new Nodes(35)
+
+
+  aa.left = bb
+  aa.right = cc
+  bb.left = dd
+  bb.right = ee
+  cc.right = ff
+//这个方法的思路就是每一个parent都是要两个children的值相加，然后再加上其parent本身的value，
+//所以利用recursion的方法，使得其反复重复上面的内容，其sum一直在反复叠加
+//在最底层时，node的两个children都是=0，所以0+node.value+0就是最底层上传到上一层的sum
+//最底层的node相当于上一层的left child或者是right child
+  // function solution(nodes) {
+  //   if (nodes === null) {
+  //     return 0
+  //   }
+  //   return solution(nodes.left)+nodes.value+solution(nodes.right)
+  // }
+  // console.log(solution(aa))
+
+
+    
+//1,insert a value into a binary search tree
+// recursion method
+
+
+
+
+//  function tree(x){
+//   this.value=x
+//   this.left=null
+//   this.right=null
+//  }
+//   function insert(r, v) {
+//       if ( v<r.value) {
+//         if (r.left === null) {
+//           r.left = new tree(v)
+//           return
+//         }
+//         insert(r.left)
+
+//       } else {
+//         if (r.right === null) {
+//           r.right = new tree(v)
+//           return
+//         }
+//         insert(r.right)
+
+//       }
+//  }
+
+//  function solution(root,value){
+//   if(root===null){
+//     return new tree(value)
+//   }
+//     insert(root,value)
+//     return root
+
+//  }
+//2.Recursively search a Binary Search Tree(BST) for a value
+//return true if found,false otherwise
+//注意：在 solution(root.left,value)或者solution(root.right,value)之前，必须写‘return’
+//因为即使在反复recursion到最后得到false/true之后，solution有了明确的值，但是若不return，则无法得到
+  // function solution(root, value) {
+  //   if(root===null){
+  //     return false
+  //   }
+  //   if(root.value===value){
+  //     return true
+  //   }
+  //   if(value<root.value){
+  //     return solution(root.left,value)
+  //   }else{
+  //     return solution(root.right,value)
+  //   }
+  // }
+
+  //3.Given an array of integers, build a binary search tree with that array.
+  //You'll have to go through each value in order of appearance and insert it into the tree at the appropriate leaf node.
+  //values: [5, 2, 7, 3]
+  // result: 5
+   //       / \
+   //      2   7
+   //       \
+   //        3
+  //  function Tree(x) {
+  //     this.value = x;
+  //     this.left = null;
+  //     this.right = null;
+  //   }
+  //   function insert(r, v) {
+  //     if (v < r.value) {
+  //       if (r.left === null) {
+  //         r.left = new Tree(v)
+  //         return
+  //       } else {
+  //         insert(r.left, v)
+  //       }
+  //     } else {
+  //       if (r.right === null) {
+  //         r.right = new Tree(v)
+  //         return
+  //       } else {
+  //         insert(r.right, v)
+  //       }
+  //     }
+  //   }
+  //   function solution(values) {
+  //     if (values.length === 0) {
+  //       return null
+  //     }
+  //     let root = new Tree(values[0])
+  //     for (let i = 1; i < values.length; i++) {
+  //       insert(root, values[i])
+  //     }
+  //     return root
+  //   }
+  //   console.log(solution([5,2,7,3]))
+
+//4.root:     5
+ //          / \
+ //         3   8
+ //        / \   \
+ //       1   4   9
+
+  //result: [5, 3, 8, 1, 4, 9]
+
+  // class Queue {
+  //   constructor() {
+  //     this.queue = [];
+  //   }
+
+  //   enqueue(x) {
+  //     this.queue.push(x);
+  //   }
+
+  //   dequeue() {
+  //     return this.queue.shift();
+  //   }
+  // }
+  
+
+  // function solution(root) {
+  //   const result = [];
+  //   const created = new Queue();
+
+  //   if (root) {
+  //     created.enqueue(root);
+
+  //     while (created.queue.length > 0) {
+  //       const currentNode = created.dequeue();
+  //       result.push(currentNode.value);
+
+  //       if (currentNode.left) {
+  //         created.enqueue(currentNode.left);
+  //       }
+
+  //       if (currentNode.right) {
+  //         created.enqueue(currentNode.right);
+  //       }
+  //     }
+  //   }
+
+  //   return result;
+  // }
+  // console.log(solution(aa))
+
+  //5.root:     5
+    //         / \
+    //        3   8
+    //       / \   \
+    //      1   4   9
+
+    //result: [1, 3, 4, 5, 8, 9]
+
+  // function solution(root) {
+  //   const result = [];
+
+  //   function inOrderTraversal(node) {
+  //     if (node === null) {
+  //       return;
+  //     }
+
+  //     inOrderTraversal(node.left);
+  //     result.push(node.value);
+  //     inOrderTraversal(node.right);
+  //   }
+
+  //   inOrderTraversal(root);
+
+  //   return result;
+  // }
+
+  //6.Reverse a binary tree, i.e. make a mirror image tree about the vertical axis.
+//While this seems intimidating at first, try to think of a recursive solution.
+//It can be done in under 10 lines of code.
+ //    root: 5
+  //        /
+  //       3
+  //      / \
+  //     1   4
+
+  // result: 5
+  //          \
+  //           3
+  //          / \
+  //         4   1
+
+   //                             root: 5
+   //                                  / \
+   //                                 3   7
+  //                                 / \   \
+   //                               1   4   9
+
+   //                              result: 5
+   //                                     / \
+    //                                   7   3
+    //                                  /   / \
+   //                                  9   4   1
+
+
+  // class TreeNode {
+  //   constructor(val) {
+  //     this.val = val;
+  //     this.left = null;
+  //     this.right = null;
+  //   }
+  // }
+
+  // function solution(root) {
+  //   if (root === null) {
+  //     return null;
+  //   }
+  //   const temp = root.left;
+  //   root.left = root.right;
+  //   root.right = temp;
+
+  //   // 递归反转左右子树
+  //   solution(root.left);
+  //   solution(root.right);
+
+  //   return root;
+  // }
+//7. 用recursion来快速寻早array中的指定value的index，找不到的情况就是return  -1
+//Input: nums = [-1,0,3,5,9,12], target = 9
+ // Output: 4
+ function solution(nums,value){
+
+ }
+//  Input: nums = [-1, 0, 3, 5, 9, 12], target = 2
+//   Output: -1
+  // function solution(nums, target) {
+  //   let first = 0
+  //   let last = nums.length - 1
+  //   if (nums.length === 0) {
+  //     return -1
+  //   }
+  //   function half(arr, f, l) {
+
+  //     let middle = Math.floor((f + l) / 2)
+  //(f > l)的情况就是当一直recursion的时候index一直减半，到array=【】值时，还在进行，此时
+  //若还在往左移动：first index 不变  last index还要往左边移步，这样 last index<first index
+  //同理：往右移动也是一样，所以用f > l来特指array=【】之后的情况，停止
+  //     if (f > l) {
+  //       return -1
+  //     }
+  //     if (target === arr[middle]) {
+  //       return middle
+  //     } else if (target > arr[middle]) {
+
+  //       return half(arr, middle + 1, l)
+  //     } else {
+
+  //       return half(arr, f, middle - 1)
+  //     }
+
+  //   }
+  //   return half(nums, first, last)
+
+
+  // }
+  //方法：
+  // function binarySearch(nums, target, left, right) {
+  //     if (left > right) {
+  //       return -1; // 未找到目标值
+  //     }
+
+  //     const mid = Math.floor((left + right) / 2);
+
+  //     if (nums[mid] === target) {
+  //       return mid; // 找到目标值
+  //     } else if (nums[mid] < target) {
+  //       return binarySearch(nums, target, mid + 1, right); // 在右侧继续搜索
+  //     } else {
+  //       return binarySearch(nums, target, left, mid - 1); // 在左侧继续搜索
+  //     }
+  //   }
+
+  //   function search(nums, target) {
+  //     return binarySearch(nums, target, 0, nums.length - 1);
+  //   }
+
+  //   const nums = [-1, 0, 3, 5, 9, 12];
+  //   const target = 9;
+  //   const result = search(nums, target);
+  //   console.log(result); // 输出 4
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

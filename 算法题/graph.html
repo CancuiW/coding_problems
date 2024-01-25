@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+
+    //1.depth-first traversal
+    //--------这个方法利用stack ,pop(),push(),根据stack中一直不为空来反复遍历
+    // const graph = {
+    //     a: ['c', 'b'],//谁在最后面，就从哪一个node的方向开始往下找
+    //     b: ['d'],
+    //     c: ['e'],
+    //     d: ['f'],
+    //     e: [],
+    //     f: []
+
+    //   }
+    
+    // function depth(graph,source){
+    //   const stack=[source] //开始就存入起始值
+    //   while(stack.length>0){
+    //     let current=stack.pop()
+    //     console.log(current)
+    //     for(let neighbor of graph[current]){
+    //       stack.push(neighbor)
+    //     }
+    //   }
+
+    // }
+    // //从'a'开始遍历
+    // console.log(depth(graph,'a'))
+
+    //---------利用recursion也可以进行遍历
+    //不停的输出带入node和其neighbors
+  // const graph = {
+  //   a: ['b', 'c'],//谁在最后面，就从哪一个node的方向开始往下找
+  //   b: ['d'],
+  //   c: ['e'],
+  //   d: ['f'],
+  //   e: [],
+  //   f: []
+
+  // }
+  // function depth(graph, source) {
+  //   console.log(source)
+  //   for(let neighbor of graph[source]){
+  //     depth(graph,neighbor)
+  //   }
+    
+
+  // }
+  // //从'a'开始遍历
+  // console.log(depth(graph, 'a'))
+
+//2.breadth-first traversal
+//use queue, push(),shift()
+// const graph = {
+//         a: ['c', 'b'],//谁在最后面，就从哪一个node的方向开始往下找
+//         b: ['d'],
+//         c: ['e'],
+//         d: ['f'],
+//         e: [],
+//         f: []
+
+//       }
+
+//     function breadth(graph,source){
+//       const queue=[source] //开始就存入起始值
+//       while(queue.length>0){
+//         let current=queue.shift()
+//         console.log(current)
+//         for(let neighbor of graph[current]){
+//           queue.push(neighbor)
+//         }
+//       }
+
+//     }
+//     //从'a'开始遍历
+//     console.log(breadth(graph,'a'))
+
+ //3.depth-first traversal Search----是否能从'f' 找到'k'
+//  const graph={
+//   f:['g','i'],
+//   g: ['h'],
+//   h: [],
+//   i: ['g','k'],
+//   j: ['i'],
+//   k: []
+//  }
+
+
+
+
+//  function path(graph,start,goal){
+//   if(start===goal){
+//     return true
+//   }
+//   for(let neighbor of graph[start]){
+//     if(path(graph,neighbor,goal)){
+//       return true
+      
+//     }
+//   }
+//   return false
+
+//  }
+
+//  console.log(path(graph, 'f','k'))
+
+
+//4.breadth-first traversal Search----是否能从'f' 找到'k'
+// const graph={
+//   f: ['g', 'i'],
+//   g: ['h'],
+//   h: [],
+//   i: ['g', 'k'],
+//   j: ['i'],
+//   k: []
+//  }
+//   function path(graph, start, goal) {
+//     const queue=[start]
+//     while(queue.length>0){
+//       const current = queue.shift()
+//       if(current===goal){
+//         return true
+//       }
+//       for (let neighbor of graph[current]) {
+//           queue.push(neighbor)
+//       }
+//     }
+//     return false
+    
+   
+
+//   }
+
+//   console.log(path(graph, 'f', 'k'))
+
+//5.undirected path problem --- connection是双向'<---->'的情况----找'j'到'm'的path
+//与directed path 不同的是，因为是双箭头，很有可能重复以前走过的路径，为了避免反复走错误的路径，
+//需要引入一个visited 集合，储存已经走过的node，每次走之前检查是否在这个集合中存在current node
+//没有走过的node，现在来走，就要储存在visited 集合中方便以后识别
+// const edges=[
+//   ['i','j'],
+//   ['k', 'i'],
+//   ['m', 'k'],
+//   ['k', 'l'],
+//   ['o', 'n']    
+// ]
+
+  // graph:
+  //{i:['j', 'k'],
+  // j:['i'],
+  // k:['i', 'm', 'l'],
+  // l:['k'],
+  // m:['k'],
+  // n:['o'],
+  // o:['n']}
+
+ 
+// function build(edges){
+//   let obj={}
+//   for(let x of edges){
+//     let [y1,y2]=x
+//     if(!(y1 in obj)){
+//       obj[y1]=[]
+//     }
+//     if (!(y2 in obj)) {
+//       obj[y2] = []
+//     }
+//     obj[y1].push(y2)
+//     obj[y2].push(y1)
+
+//   }
+//   return obj
+// }
+// //.has()这是用于检查一个元素是否存在于 Set 集合中的方式。Set 是一种数据结构，它包含一组唯一的值，每个值只能出现一次
+// function path(graph, start, goal,visited){
+  
+//   if(start===goal){
+//     return true
+//   }
+//   if (visited.has(start)) {
+//     return false
+//   }
+//   visited.add(start)
+
+//   for(let neighbor of graph[start]){
+//     if(path(graph, neighbor, goal,visited)) {
+//       return true
+//     }
+//   }
+//   return false
+
+// }
+// //Set 是 JavaScript 中的一种数据结构，它表示一组唯一的值，不允许重复
+// function undirectedPath(edge,nodeA,nodeB){
+//   const graph=build(edge)
+//   return path(graph,nodeA,nodeB,new Set())
+// }
+
+
+
+// console.log(undirectedPath(edges,'j','m'))
+
+
+//6. connected components count---
+//相当于利用遍历，每遍历完一个component就count++，找一共有几个components
+//按照node的顺序一一检查
+// let graph={
+//   0:[8,1,5],
+//   1: [0],
+//   5: [0,8],
+//   8: [0,5],
+//   2: [3,4],
+//   3: [2,4],
+//   4: [3,2]
+// }
+// //String()因为key值默认为string type，array中默认为数字，所以两者一起比较之前要统一格式
+// function explore(graph,current,visited){
+//   if(visited.has(String(current))){
+//     return false
+//   }
+//   visited.add(String(current))
+//   for(let neighbor of graph[current]){
+//        explore(graph,neighbor,visited)
+//   }
+//   return true//意思是当上面的loop结束之后就返回true，因为explore(graph,neighbor,visited)虽然有结果，但是并没有用return返回结果，只是作为设置条件进行循环并停止遍历
+
+// }
+
+
+// function components(graph){
+//   let visited=new Set()
+//   let count=0
+//   for(let node in graph){
+     //console.log(visited)
+//     if(explore(graph,node,visited)===true){
+//       count++
+//     }
+    
+//   }
+//   return count
+// }
+
+// console.log(components(graph))
+
+//7.largest component 问题
+
+// let graph={
+//   0:['8','1','5'],
+//   1: ['0'],
+//   5: ['0','8'],
+//   8: ['0','5'],
+//   2: ['3','4'],
+//   3: ['2','4'],
+//   4: ['3','2']
+// }
+
+// function exploreSize(graph,current,visited){
+//   if(visited.has(current)){
+//     return 0
+//   }
+//   visited.add(current)
+//   let size=1 //当current 不在visited里面 size++ 最后loop结束 return size，并带入上一层的recursion
+//   for(let neighbor of graph[current]){
+//       size+=exploreSize(graph,neighbor,visited)
+//   }
+//   return size
+// }
+
+
+// function largestComponents(graph){
+//   let visited=new Set()
+//   let longest=0
+//   for(let node in graph){
+  
+//     let size=exploreSize(graph,node,visited)
+//     if(size>longest){
+//       longest=size
+//     }
+//   }
+//   return longest
+// }
+
+// console.log(largestComponents(graph))
+
+//7.shortest component 问题
+
+  // let graph = {
+  //   0: ['8', '1', '5'],
+  //   1: ['0'],
+  //   5: ['0', '8'],
+  //   8: ['0', '5'],
+  //   2: ['3', '4'],
+  //   3: ['2', '4'],
+  //   4: ['3', '2']
+  // }
+
+  // function exploreSize(graph, current, visited) {
+  //   if (visited.has(current)) {
+  //     return 0
+  //   }
+  //   visited.add(current)
+  //   let size = 1 //当current 不在visited里面 size++ 最后loop结束 return size，并带入上一层的recursion
+  //   for (let neighbor of graph[current]) {
+  //     size += exploreSize(graph, neighbor, visited)
+  //   }
+  //   return size
+  // }
+
+
+  // function shortestComponents(graph) {
+  //   let visited = new Set()
+  //   let shortest = Object.values(graph).length
+  //   for (let node in graph) {
+
+  //     let size = exploreSize(graph, node, visited)
+  //     if (size < shortest&& size!==0) {
+  //       shortest = size
+  //     }
+  //   }
+  //   return shortest
+  // }
+
+  // console.log(shortestComponents(graph))
+
+//8.shortest path 问题
+// let edges=[
+//   ['w', 'x'],
+//   ['x', 'y'],
+//   ['z', 'y'],
+//   ['z', 'v'],
+//   ['w', 'v']
+// ]
+// function createGraph(edge){
+//   let obj={}
+//   for(let i of edge){
+//     let [a,b]=i
+//     if(!(a in obj)){
+//       obj[a]=[]
+//     }
+//     if (!(b in obj)) {
+//       obj[b] = []
+//     }
+//     obj[a].push(b)
+//     obj[b].push(a)
+//   }
+//   return obj
+
+// }
+// function shortestPath(edge,nodeA,nodeB){
+//   const graph=createGraph(edge)
+//   const visited=new Set([nodeA])
+//   //[nodeA,0]记录对应的步数
+//   let queue=[[nodeA,0]]
+
+//   while(queue.length>0){
+//     let [current,distance]=queue.shift()
+//     if(current===nodeB){
+//       return distance
+//     }
+    
+//     for(let neighbor of graph[current]){
+//       if(!(visited.has(neighbor))){
+//         visited.add(neighbor)
+//         queue.push([neighbor, distance + 1])
+//       }
+     
+//     }
+//   }
+//   //没有找到path的情况下
+//   return -1
+
+// }
+// console.log(shortestPath(edges, 'w' ,'z'))
+  
+//9.island count problem
+//write a function ,islandCount,that takes in a grid containing 'W' and 'L'.W represents 
+//water and L represents land. The function should return the number of islands on the grid.
+//An island is a vertically or horizontally connected region of land
+//找有几个connected “L”
+//可以理解为depth-first traversal中遇到‘W'就false，这样可以得到一个component
+// const grid=[
+//   ['W', 'L', 'W', 'W', 'W'],
+//   ['W', 'L', 'W', 'W', 'W'],
+//   ['W', 'W', 'W', 'L', 'W'],
+//   ['W', 'W', 'L', 'L', 'W'],
+//   ['L', 'W', 'W', 'L', 'L'],
+//   ['L', 'L', 'W', 'W', 'W']
+// ]
+
+// function explore(grid, r, c, visited){
+//   const rowInbounds=(0<=r && r<grid.length)
+//   const colInbounds=(0<=c && c<grid[0].length)
+//   if(!rowInbounds||!colInbounds){
+//     return false
+//   }
+//   if(grid[r][c]==='W'){
+//     return false
+//   }
+
+//   let current=r+','+c
+//   if(visited.has(current)){
+//     return false
+//   }
+//   visited.add(current)
+//   //下面是current上下左右的node，验证是否为’L'
+//   explore(grid, r - 1, c, visited)
+//   explore(grid, r + 1, c, visited)
+//   explore(grid, r , c-1, visited)
+//   explore(grid, r , c+1, visited)
+//  return true
+  
+// }
+
+// function island(grid){
+//   const visited=new Set()
+//   let count=0
+//   for(let r=0;r<grid.length;r++){
+//     for(let c=0;c<grid[0].length;c++){
+//       if(explore(grid,r,c,visited)===true){
+//         count++
+
+//       }
+//     }
+//   }
+//   return count
+// }
+// console.log(island(grid))
+
+//10.minimun island size 就是在grid中找到了所有的components,然后再return 这些components中最短的size是多少
+//nested loops+depth first traversal
+// const grid=[
+//   ['W', 'L', 'W', 'W', 'W'],
+//   ['W', 'L', 'W', 'W', 'W'],
+//   ['W', 'W', 'W', 'L', 'W'],
+//   ['W', 'W', 'L', 'L', 'W'],
+//   ['L', 'W', 'W', 'L', 'L'],
+//   ['L', 'L', 'W', 'W', 'W']
+// ]
+
+// function explore(grid, r, c, visited){
+//   const rowInbounds=(0<=r && r<grid.length)
+//   const colInbounds=(0<=c && c<grid[0].length)
+//   if(!rowInbounds||!colInbounds){
+//     return 0
+//   }
+//   if(grid[r][c]==='W'){
+//     return 0
+//   }
+
+//   let current=r+','+c
+//   if(visited.has(current)){
+//     return 0
+//   }
+//     visited.add(current)
+//    let size=1
+
+//   //下面是current上下左右的node，验证是否为’L'
+//   size += explore(grid, r - 1, c, visited)
+//   size +=explore(grid, r + 1, c, visited)
+//   size +=explore(grid, r , c-1, visited)
+//   size +=explore(grid, r , c+1, visited)
+//  return size
+  
+// }
+
+// function minimunIsland(grid){
+//   const visited=new Set()
+//   let minSize=grid.length
+//   for(let r=0;r<grid.length;r++){
+//     for(let c=0;c<grid[0].length;c++){
+//       let size=explore(grid,r,c,visited)
+//       if(size>0&&minSize>size){
+//         minSize=size
+//       }
+      
+//       }
+//     }
+//     return minSize
+  
+//   }
+ 
+
+// console.log(minimunIsland(grid))
+
+
+
+
+
+
+
+
+
+    
+    // function solution(connections){
+    //   function dft(start,visited){
+    //     if(start in visited){
+    //       return true
+    //     }
+    //     const new_visited={...visited}
+    //     new_visited[start]=true
+    //     for(let neighbor of connections[start]){
+    //       const cyclic=dft(neighbor,new_visited)
+    //       if(cyclic){
+    //         return true
+    //       }
+    //     }
+    //     return false
+    //   }
+     
+    //   for (let i = 0; i < connections.length; i++) {
+    //     if(dft(i,{})){
+    //       return true
+    //     }
+    //   }
+    //   return false
+    // }
+
+    // let simple=[[1],[2],[3,4],[4],[0]]
+    // let a=[[1,2,3],[2,3],[3],[]]
+    // console.log(solution(a))
+
+
+     
+  </script>
+
+</body>
+
+</html>

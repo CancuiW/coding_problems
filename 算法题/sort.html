@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+    //--------------bubble sort--------------
+    //1. 利用 in-place Bubble sort  的方式将其array按照升序排列
+    //let s=[3,2,4,9,8,0]
+    //思路：外层loop将从后往前，内层从前往后，这样保证在内部进行loop之后fixed最后一个item
+    //内部每固定一个item，外层就减少一个
+    
+    
+    // function solution(array){
+    //   for(let last=array.length-1;last>=1;last--){
+    //     //引入swapped的意义在于，如果本身就是sorted array，在经过一次loop之后，不会有swap的操作，
+    //     //这时直接停止，因为后面就没有意义再固定一个item，剩下的items重复loop了
+    //     let swapped=false
+    //     for(let i=0;i<last;i++){
+    //       if(array[i]>array[i+1]){
+    //         [array[i],array[i+1]]= [array[i+1], array[i]]
+    //         swapped=true
+    //       }
+    //     }
+    //     if(!swapped){
+    //       break
+    //     }
+    //   }
+      
+    //   return array
+    // }
+
+//2. 利用 insert sort 的方式将其array按照升序排列
+  // function solution(a) {
+  //   for (let i = 1; i < a.length; i++) {
+  //     let j = i
+  //     while (j > 0 && a[j] < a[j - 1]) {
+  //       [a[j - 1], a[j]] = [a[j], a[j - 1]]
+  //       j--
+  //     }
+
+  //   }
+  //   return a
+
+  // }
+
+
+    // console.log(solution(s))
+
+ // 3.Write a Quicksort.Sorting an empty array results in an empty array.As an extra challenge, try to do this with a minimum of copying.
+// Examples   a: [3, 2, 1]   result: [1, 2, 3]
+
+  // function solution(a) {
+  //   if (a.length <= 1) {
+  //     return a
+  //   }
+  //   let pivot = a[a.length - 1]
+  //   let leftArr = []
+  //   let rightArr = []
+  //   for (let i = 0; i < a.length - 1; i++) {
+  //     if (a[i] < pivot) {
+  //       leftArr.push(a[i])
+  //     } else {
+  //       rightArr.push(a[i])
+  //     }
+  //   }
+  //   if (leftArr.length > 0 && rightArr.length > 0) {
+  //     return [...solution(leftArr), pivot, ...solution(rightArr)]
+  //   } else if (leftArr.length > 0) {
+  //     return [...solution(leftArr), pivot, ...rightArr]
+  //   } else {
+  //     return [...leftArr, pivot, ...solution(rightArr)]
+  //   }
+
+  // }
+
+
+
+//4. 利用 merge sort 的方式将其array按照升序排列
+//第一步：将separate all the items in the array ---- mergesort()
+//第二步：将分开的items两两sort 到一起，最后成为一个sorted array---- merge()
+    // function merge(left,right){
+    //   const result=[]
+    //   let li=0
+    //   let ri=0
+    //   while (li<left.length&&ri<right.length){
+    //     if(left[li]<right[ri]){
+    //       result.push(left[li])
+    //       li++              //相当于result.push(left[li]) li++
+    //     }else{
+    //       result.push(right[ri++])
+    //     }
+    //   }
+
+    //   while (li<left.length){
+    //     result.push(left[li++])
+    //   }
+    //   while (ri < right.length) {
+    //     result.push(right[ri++])
+    //   }
+
+    //   return result
+
+    // }
+//每当得到准确的left和right值的时候都会进行merge(left,right)的运算，
+//得到的值作为上一步left或者right的一部分，继续进行
+//所以要一直进行到所有的items都被sorted
+    // function mergesort(a){
+    //   if(a.length<2){
+    //     return a
+    //   }
+    //   const halfway_index=parseInt(a.length/2)
+    //   let left=a.slice(0,halfway_index)
+    //   let right=a.slice(halfway_index,a.length)
+    //    left=mergesort(left)
+    //    right=mergesort(right)
+    //    return  merge(left,right)
+      
+    // }
+
+
+    // function solution(a){
+    //   return mergesort(a)
+    // }
+    // let arr=[2,4,3,1,1]
+    // console.log(solution(arr))
+
+// 5. input:
+// let s=[[3,3,4,2],[4,4],[4,0,3,3],[2,3],[3,3,3]]
+// //output=[[0,4],[1],[2,3]]
+// function means(array){
+//   let count=0
+//   for(let i in array){
+//     count+=array[i]
+    
+//   }
+//   return count/array.length
+
+// }
+
+// function solution(nested){
+//   let arr=nested.map(x=>means(x))
+//   //arr=[3, 4, 2.5, 2.5, 3]
+//  let obj={}
+
+//   for (let i in arr){
+//     if(arr[i] in obj){
+//       obj[arr[i]].push(parseInt(i))
+//     }else{
+//     obj[arr[i]]=[parseInt(i)]
+//     }
+//   }
+// //obj={3: Array(2), 4: Array(1), 2.5: Array(2)}
+//  return Object.values(obj)
+
+// }
+// console.log(solution(s))
+  
+//6. You have array of integers nums and you need to build a new counts array. 
+//In the new counts array, counts[i] is the number of smaller elements to the right of nums[i].
+// You're asked to find not the counts array, but the sum of its elements.
+//For nums = [3, 8, 4, 1], the output should be
+ // solution(nums) = 4.
+//To the right of 3: there is 1 smaller element(1).
+//To the right of 8: there are 2 smaller elements(4 and 1).
+//To the right of 4: there is 1 smaller element(1).
+//To the right of 1: there are 0 smaller elements.
+//The resulting array is[1, 2, 1, 0], and the sum of its elements is 1 + 2 + 1 + 0 = 4.
+  // function solution(nums) {
+
+
+  //   let count = 0
+  //   for (let i = 0; i < nums.length; i++) {
+  //     let j = i + 1
+  //     while (j < nums.length) {
+  //       if (nums[i] > nums[j]) {
+  //         count++
+
+  //       }
+  //       j++
+  //     }
+  //   }
+  //   return count
+
+  // }
+  //上诉方法还有2个hides没有通过，还不知道原因
+
+//7.You are given a list of XP points of all users, your task is to calculate how many users are there 
+//in each level and print them in decreasing order of those numbers. In case of a tie, higher level should appear first.
+//Levels are defined in the following way:
+  // Recruit: 0 - 999 XP
+  // Soldier: 1000 - 4999 XP
+  // Warrior: 5000 - 9999 XP
+  // Captain: 10000 - 49999 XP
+  // Ninja: 50000 + XP
+  //example:
+  //points: [0, 500, 1500]----output:["Recruit - 2",  "Soldier - 1"]
+  //points: [999, 4999, 9999, 49999, 50000]---output:
+  //["Ninja - 1", "Captain - 1","Warrior - 1","Soldier - 1","Recruit - 1"]
+  //思路：1：先要create一个object去从高level-->底level统计出各个级别的数量
+  //     2:然后对 Object.entries(obj)将object变成nested array [[Recruit,2], [Soldier,1]]
+  //     3.然后对nested array中的数字进行排序sort
+  // function solution(points) {
+  //   let obj = { 'Ninja': 0, 'Captain': 0, 'Warrior': 0, 'Soldier': 0, 'Recruit': 0 }
+  //   for (let i in points) {
+  //     let num = points[i]
+  //     if (num >= 0 && num <= 999) {
+  //       obj['Recruit']++
+  //     } else if (num <= 4999) {
+  //       obj['Soldier']++
+  //     } else if (num <= 9999) {
+  //       obj['Warrior']++
+  //     } else if (num <= 49999) {
+  //       obj['Captain']++
+  //     } else {
+  //       obj['Ninja']++
+  //     }
+  //   }
+  //   let objFilter = Object.entries(obj).filter(([key, value]) => value !== 0)
+  //   let result = objFilter.sort((a, b) => b[1] - a[1])
+  //   result = result.map(x => `${x[0]} - ${x[1]}`)
+
+
+  //   return result
+
+  // }
+
+  //8.Given a string s consisting of small English letters, find and return the first instance of a 
+  //non-repeating character in it. If there is no such character, return '_'.
+  //For s = "abacabad", the output should be   solution(s) = 'c'.
+  //就是找第一个没有重复的字母
+  // function solution(s) {
+  //     let obj = {}
+  //     for (let i of s) {
+  //       if (i in obj) {
+  //         obj[i]++
+  //       } else {
+  //         obj[i] = 1
+  //       }
+  //     }
+  //     let arr = Object.entries(obj)
+  //     let res = arr.filter(([key, value]) => value === 1)
+  //     console.log(res)
+  //     if (res.length > 0) {
+  //       return res[0][0]
+  //     } else {
+  //       return "_"
+  //     }
+
+
+  //   }
+
+
+
+  //9.给两个string，检查每个string中单个字母出现的次数，如果出现的多，然后字母的排序就大，
+  //出现的相同次数，则会按照字母表中的顺序，从小到大排列
+  //You are implementing your own programming language and you've decided to add support for merging strings. 
+  //A typical merge function would take two strings s1 and s2, and return the lexicographically smallest result 
+  //that can be obtained by placing the symbols of s2 between the symbols of s1 in such a way that maintains the 
+  //relative order of the characters in each string.
+//常规排列：因为每个字母在本string中只出现了一次
+//For example, if s1 = "super" and s2 = "tower", the result should be merge(s1, s2) = "stouperwer".
+//非常规排列：
+//For s1 = "dce" and s2 = "cccbd", the output should be solution(s1, s2) = "dcecccbd"
+//s1: "kkihj"  s2: "jbsmfoftph"，--------"jbsmfoftphkkihj"
+
+  // function solution(s1, s2) {
+
+  //   let obj1 = {}
+  //   for (let m of s1) {
+  //     if (m in obj1) {
+  //       obj1[m]++
+  //     } else {
+  //       obj1[m] = 1
+  //     }
+  //   }
+  //   let obj2 = {}
+  //   for (let n of s2) {
+  //     if (n in obj2) {
+  //       obj2[n]++
+  //     } else {
+  //       obj2[n] = 1
+  //     }
+  //   }
+  //   //{ "d": 1, "c": 1, "e": 1}
+  //   //{ "c": 3,"b": 1"d": 1}
+
+
+
+  //   let arr = []
+  //   let i = 0
+  //   let j = 0
+  //   while (i < s1.length && j < s2.length) {
+  //     if (obj1[s1[i]] < obj2[s2[j]] || (obj1[s1[i]] === obj2[s2[j]] && s1[i] <= s2[j])) {
+  //       arr.push(s1[i])
+  //       i++
+  //     } else {
+  //       arr.push(s2[j])
+  //       j++
+  //     }
+  //   }
+  //   while (i < s1.length) {
+  //     arr.push(s1[i])
+  //     i++
+  //   }
+  //   while (j < s2.length) {
+  //     arr.push(s2[j])
+  //     j++
+  //   }
+  //   return arr.join("")
+
+  //   return arr
+  // }
+
+  //10.
+  //Write a function that partitions the input array into two result arrays based on the pivot.
+  //If a value in the array is less than the pivot, it should be appended to one result array.
+//If it's not less than the pivot, it should be appended to another result array.
+//The return value is an array containing the less - than and not - less than results arrays.
+//The elements in the two arrays must be in the same relative order they appear in the input array.
+  //a:     [1, 2, 3, 4, 5, 6, 7]   pivot: 4    result: [[1, 2, 3], [4, 5, 6, 7]]
+  // a: [4, 5, 6, 7, 1, 2, 3] pivot: 4    result: [[1, 2, 3], [4, 5, 6, 7]]
+  //a: [2, 3, 1]  pivot: 1     result: [[], [2, 3, 1]]
+//意思就是说将大于和小于pivot的数放在一起
+//function solution(a, pivot) {
+
+//   let leftArr = [];
+//   let rightArr = [];
+
+//   for (let i = 0; i < a.length; i++) {
+//     if (a[i] < pivot) {
+//       leftArr.push(a[i]);
+//     } else {
+
+//       rightArr.push(a[i]);
+//     }
+//   }
+
+//   return [[...leftArr], [...rightArr]]
+      
+// }
+//11.
+//A string is said to be beautiful if each letter in the string appears at most as many times 
+//as the previous letter in the alphabet within the string; ie: b occurs no more times than a;
+// c occurs no more times than b; etc.Note that letter a has no previous letter.
+//Given a string, check whether it is beautiful.
+//For inputString = "bbbaacdafe", the output should be solution(inputString) = true.
+
+//This string contains 3 as, 3 bs, 1 c, 1 d, 1 e, and 1 f(and 0 of every other letter), 
+//so since there aren't any letters that appear more frequently than the previous letter, 
+//this string qualifies as beautiful.
+//For inputString = "aabbb", the output should be solution(inputString) = false.
+//Since there are more bs than as, this string is not beautiful.
+//其主要意思就是说 true：字母越小，value值必须越大。就算未出现letter，其值也应该考虑在内，
+//因为出现的letter必须比所有在其前面的letter的value值小，比如 aaz---false,因为z前面还有24个字母的value值都是0
+  // function solution(inputString) {
+  //   let obj = {
+  //     'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0,
+  //     'h': 0, 'i': 0, 'j': 0, 'k': 0, 'l': 0, 'm': 0, 'n': 0,
+  //     'o': 0, 'p': 0, 'q': 0, 'r': 0, 's': 0, 't': 0, 'u': 0,
+  //     'v': 0, 'w': 0, 'x': 0, 'y': 0, 'z': 0
+  //   }
+  //   for (let i of inputString) {
+
+  //     obj[i]++
+
+  //   }
+
+  //   let arr = Object.entries(obj)
+  //   console.log(arr)
+
+  //   for (let j = 0; j < arr.length - 1; j++) {
+  //     if (arr[j][0] < arr[j + 1][0] && arr[j + 1][1] > arr[j][1]) {
+  //       return false
+  //     }
+  //   }
+  //   return true
+
+  // }
+
+  //12.For names = ["doc", "doc", "image", "doc(1)", "doc"], the output should be solution(names) = ["doc", "doc(1)", "image", "doc(1)(1)", "doc(2)"].
+//Since names[0] = "doc" and names[1] = "doc", update names[1] = "doc(1)"
+//Since names[1] = "doc(1)" and names[3] = "doc(1)", update names[3] = "doc(1)(1)"
+//Since names[0] = "doc", names[1] = "doc(1)", and names[4] = "doc", update names[4] = "doc(2)"
+//意思就是如果存在相同的item，则在item的后面添加数字，如果仍旧存在，则不断加
+  // function solution(names) {
+  //   const fileNames = {}; // 用于存储每个文件名及其出现次数
+
+  //   // 遍历文件名数组
+  //   const result = [];
+  //   for (const name of names) {
+  //     if (!fileNames[name]) {
+  //       // 如果文件名还没有出现过，直接添加到结果数组中
+  //       fileNames[name] = 1;
+  //       result.push(name);
+  //     } else {
+  //       // 如果文件名已经出现过，需要添加后缀
+  //       let i = 1;
+  //       let newName = `${name}(${i})`;
+  //       while (fileNames[newName]) {
+  //         // 如果新的文件名仍然已经存在，继续增加后缀数字
+  //         i++;
+  //         newName = `${name}(${i})`;
+  //       }
+  //       fileNames[newName] = 1;
+  //       result.push(newName);
+  //     }
+  //   }
+
+  //   return result;
+  // }
+
+//13;
+//For strings = ["one", "two", "three"] and sources = ["onetwo", "random", "one", "twoone", "twothree"], the output should be
+ // solution(strings, sources) = [true, false, true, false, false].
+//意思就是说对strings中的所有item从左往右加起来的就是true，跳加都是false
+//例如["one", "two", "three"] 只有[one,onetwo,onetwothree]的情况才能是true
+  // function change(array) {
+  //   let results = [array[0]]
+  //   let first = array[0]
+
+  //   let n = 1
+  //   while (n < array.length) {
+  //     let item = first + array[n]
+  //     results.push(item)
+  //     first = item
+  //     n++
+
+  //   }
+  //   return results
+  // }
+
+
+  // function solution(strings, sources) {
+  //   let res = []
+  //   let arrays = change(strings)
+  //   for (let i of sources) {
+  //     if (arrays.includes(i)) {
+  //       res.push(true)
+  //     } else {
+  //       res.push(false)
+  //     }
+
+
+  //   }
+  //   return res
+
+  // }
+//14
+//For words = ["is", "valid", "right"] and variableName = "isValid", 
+//the output should be solution(words, variableName) = true.
+//words: ["a"]   variableName: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"----true
+//words:["ayrtu", "ceinm", "nbcyjsghf", "ukw", "in", "noiobkq","eqlpggfocl", "cri", "ikgtzxc", "oll"]
+ // variableName: "InCeinm"---true
+//其目的是检查给定的变量名 variableName 是否可以由列表 words 中的单词组成，而且这些单词必须以 CamelCase 形式连接
+//str.split(/(?=[A-Z])/)客可以把字符串中的大写字母开头的单词分割出来
+  // function solution(words, variableName) {
+  //   const camelCase = (str) => {
+  //     return str.split(/(?=[A-Z])/).map(word => word.toLowerCase());
+  //   };
+
+  //   const variableNameWords = camelCase(variableName);
+
+  //   for (const word of variableNameWords) {
+  //     if (!words.includes(word)) {
+  //       return false;
+  //     }
+  //   }
+
+  //   return true;
+  // }
+
+
+  //15
+  //For a = [[3, 3, 4, 2],[4, 4],[4, 0, 3, 3],[2, 3], [3, 3, 3]]the output should be
+//   solution(a) = [[0, 4],[1],[2, 3]]
+    // mean(a[0]) = (3 + 3 + 4 + 2) / 4 = 3;
+    // mean(a[1]) = (4 + 4) / 2 = 4;
+    // mean(a[2]) = (4 + 0 + 3 + 3) / 4 = 2.5;
+    // mean(a[3]) = (2 + 3) / 2 = 2.5;
+    // mean(a[4]) = (3 + 3 + 3) / 3 = 3.
+    //
+    // function change(arr) {
+    //     let sums = 0
+    //     for (let i of arr) {
+    //       sums += i
+    //     }
+
+
+    //     return sums / arr.length
+
+    //   }
+    //   function solution(a) {
+    //     let arr = a.map(x => change(x))
+
+    //     let obj = {}
+        //因为诸多mean值存在float的形式，在被作为key值加入object中时，其顺序会改变，例如整数型key值排在前面
+        //float型key值排在后面，所以为了保证其处理顺序不变，引入了新的变量order来规整其排列顺序，这样对应的values也会按顺序出现
+      //   let order = []
+
+      //   for (let m in arr) {
+      //     let key = arr[m]
+      //     if (!obj[key]) {
+      //       obj[key] = [parseInt(m)]
+      //       order.push(key)
+
+      //     } else {
+      //       obj[key].push(parseInt(m))
+      //     }
+
+
+      //   }
+      //   console.log(order)
+      //   console.log(obj)
+      //   let res = order.map(x => obj[x])
+      //   return res
+
+
+      // }
+  </script>
+
+</body>
+
+</html>

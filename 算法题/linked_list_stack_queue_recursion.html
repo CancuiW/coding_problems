@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+    
+//专题一：list node
+//1.give the head of a linked list,a new value,and an index to insert before, make a new node with the given value
+//and insert it in the list before the given index.
+//If the index <=0, the new node will be inserted at the head of the list.
+//If the index >= the length of the existing list, the new node should be appended on the end of the list.
+//Otherwise, the new node will be inserted into the list before the given index.
+//The index is 0-based
+//You will have to construct a new ListNode to hold the value
+//大致的意思就是说在原始的listed node的head，middle，tail 中加上一个 new node
+//examples:
+
+//head:1->2->3
+//value:99
+//index:1
+//result:1->99->2->3
+
+//head:1->2->3
+//value:99
+//index:0
+//result: 99->1->->2->3
+
+//head:1->2->3
+//value:99
+//index:293849
+//result:1->2->3->293849
+
+//head:null
+//value:99
+//index:any value
+//result:99
+
+
+// function ListNode(x){
+//   this.value=x;
+//   this.next=null
+// }
+
+
+   
+//     function solution(head,value,index){
+//        let n = new ListNode(value)
+//        //situation 1: head:[]
+//       if(head===null){
+       
+//         return n
+//       }
+//       //situation 2:index<=0
+//       if(index<=0){
+       
+//         n.next=head
+//         return n
+//       }
+//       //situation3: 0<index<list of length
+//       //list:   1->2->3
+//       //index:  0- 1 -2
+//       let prev=head
+//       let current=head.next
+//       let cur_index=1
+//       while(current!==null){
+//         if(cur_index==index){
+//               prev.next=n
+//               n.next=current
+//               //之所以返回head是因为pre和head指代同一个object，所以pre改变这个object,head 也就跟着改变
+//               return head
+//         }
+//         prev=prev.next
+//         current=current.next
+//         cur_index++
+//       }
+      
+//       //situation 4:index>list of length
+//       //after the while loop, filter the situation 3(0<index<list of length) 
+//       //current node became to the tail of list
+//      prev.next=n
+//      
+//      return head
+      
+//     }
+//    let h={value:1,next:{value:2,next:{value:3,next:null}}}
+//    let h = { value: 1, next: null}
+//     console.log(solution(h,99,79978))
+//方法2:
+  // function ListNode(x) {
+  //   this.value = x;
+  //   this.next = null;
+  // }
+
+  // function solution(head, value, index) {
+  //   let newNode = new ListNode(value);
+
+  //   // 如果链表为空或者要在索引0处插入
+  //   if (head === null || index <= 0) {
+  //     newNode.next = head;
+  //     const result = [];
+  //     let current = newNode;
+  //     while (current !== null) {
+  //       result.push(current.value);
+  //       current = current.next;
+  //     }
+  //     return result;
+  //   }
+
+  //   let prev = head;
+  //   let current = head.next;
+  //   let currentIndex = 1;
+
+  //   while (current !== null) {
+  //     if (currentIndex === index) {
+  //       prev.next = newNode;
+  //       newNode.next = current;
+  //       return head;
+  //     }
+
+  //     prev = prev.next;
+  //     current = current.next;
+  //     currentIndex++;
+  //   }
+
+  //   // 如果 index 大于链表长度，将新节点添加到链表末尾
+  //   prev.next = newNode;
+
+  //   const result = [];
+  //   let resultCurrent = head;
+  //   while (resultCurrent !== null) {
+  //     result.push(resultCurrent.value);
+  //     resultCurrent = resultCurrent.next;
+  //   }
+
+  //   return result;
+  // }
+
+
+
+//2-----search by index 
+//input :linked list  and the index
+//output the related value in the index 
+//需要跟踪current index
+
+
+
+
+
+
+
+
+
+  // function ListNode(x) {
+  //   this.value = x;
+  //   this.next = null
+  // }
+  // function solution(nodes, num) {
+
+  //   let current = nodes
+  //   let cur_index = 0
+  //   while (current !== null) {
+  //     if (cur_index === num) {
+  //       return current.value
+
+  //     } else {
+  //       cur_index++
+  //       current = current.next
+
+  //     }
+  //   }
+
+  //   return current
+
+
+  // }
+  // let h = { value: 1, next: { value: 5, next: { value: 8, next: null } } }
+  // console.log(solution(h, 2))
+  //3-----search by value
+//不需要跟踪current index
+
+
+
+  // function ListNode(x) {
+  //     this.value = x;
+  //     this.next = null
+  //   }
+  //   function solution(nodes, v) {
+
+  //     let current = nodes
+      
+  //     while (current !== null) {
+  //       if (current.value === v) {
+  //         return current
+
+  //       } else {
+          
+  //         current = current.next
+
+  //       }
+  //     }
+
+  //     return false
+
+
+  //   }
+  //   let h = { value: 1, next: { value: 5, next: { value: 8, next: null } } }
+  //   console.log(solution(h, 5))
+
+  //4------ insert a 9 after the 4
+  //let h = { value: 3, next: { value: 4, next: { value: 0, next: null } } }
+
+    // function ListNode(x) {
+    //     this.value = x;
+    //     this.next = null
+    //   }
+    //   function solution(nodes,x) {
+    //     let pre=nodes
+    //     let current = nodes.next
+    //     let item=new ListNode(9)
+
+    //     while (current !== null) {
+    //       if (current.value === x) {
+    //         pre.next=item
+    //         item.next=current
+    //         return nodes
+    //       } else {
+    //         current = current.next
+    //         pre=pre.next
+
+    //       }
+    //     }
+    //     pre.next=item
+
+    //     return nodes
+
+
+    //   }
+    //   let h = { value: 3, next: { value: 4, next: { value: 0, next: null } } }
+    //   console.log(solution(h,11))
+
+   //5------ Linked List Deletes
+  //  function ListNode(x) {
+  //     this.value = x;
+  //     this.next = null
+  //   }
+  //   function solution(nodes, x) {
+  //     let pre = nodes
+  //     let current = nodes.next
+      
+
+  //     while (current !== null) {
+  //       if (current.value === x) {
+  //         pre.next = current.next
+         
+  //         return nodes
+  //       } else {
+  //         current = current.next
+  //         pre = pre.next
+
+  //       }
+  //     }
+      
+
+  //     return current
+
+
+  //   }
+  //   let h = { value: 3, next: { value: 4, next: { value: 0, next: null } } }
+  //   console.log(solution(h, 11))
+
+   //6------ Pop with a Linked list stack
+   //first step:let old_head =head
+   //second: head=head.next
+   //third: old_head.next=null
+   //return old_head  这个就是pop下来的node
+
+  //------------------以下是一个使用JavaScript实现维护尾指针的链表操作的示例：
+  //maintaining a tail pointer
+  // class ListNode {
+  //   constructor(value) {
+  //     this.value = value;
+  //     this.next = null;
+  //   }
+  // }
+
+  // class LinkedList {
+  //   constructor() {
+  //     this.head = null; // 头指针
+  //     this.tail = null; // 尾指针
+  //   }
+
+  //   // 在链表尾部插入元素
+  //   append(value) {
+  //     const newNode = new ListNode(value);
+  //     if (!this.head) {
+  //       // 如果链表为空，初始化头尾指针都指向新节点
+  //       this.head = newNode;
+  //       this.tail = newNode;
+  //     } else {
+  //       // 否则，将新节点连接到当前尾部节点的next上，然后更新尾指针
+  //       this.tail.next = newNode;
+  //       this.tail = newNode;
+  //     }
+  //   }
+
+  //   // 在链表头部插入元素
+  //   prepend(value) {
+  //     const newNode = new ListNode(value);
+  //     if (!this.head) {
+  //       // 如果链表为空，初始化头尾指针都指向新节点
+  //       this.head = newNode;
+  //       this.tail = newNode;
+  //     } else {
+  //       // 否则，将新节点链接到新头节点的next上，然后更新头指针
+  //       newNode.next = this.head;
+  //       this.head = newNode;
+  //     }
+  //   }
+
+  //   // 删除链表尾部元素
+  //   deleteTail() {
+  //     if (!this.head) {
+  //       return; // 空链表，无操作
+  //     }
+
+  //     if (this.head === this.tail) {
+  //       // 链表只有一个节点时，将头尾指针都置为null
+  //       this.head = null;
+  //       this.tail = null;
+  //       return;
+  //     }
+
+  //     // 遍历链表找到倒数第二个节点
+  //     let current = this.head;
+  //     while (current.next !== this.tail) {
+  //       current = current.next;
+  //     }
+
+  //     // 将倒数第二个节点的next指向null，并更新尾指针
+  //     current.next = null;
+  //     this.tail = current;
+  //   }
+
+  //   // 遍历链表并返回一个数组，用于显示链表的内容
+  //   toArray() {
+  //     const result = [];
+  //     let current = this.head;
+  //     while (current) {
+  //       result.push(current.value);
+  //       current = current.next;
+  //     }
+  //     return result;
+  //   }
+  // }
+
+  //project1:
+  //For l1 = [1, 2, 3] and l2 = [4, 5, 6], the output should be
+//     solution(l1, l2) = [1, 2, 3, 4, 5, 6];
+// For l1 = [1, 1, 2, 4] and l2 = [0, 3, 5], the output should be
+//     solution(l1, l2) = [0, 1, 1, 2, 3, 4, 5].
+
+
+  // 定义一个表示链表节点的类
+  // class ListNode {
+  //   constructor(value) {
+  //     this.value = value; // 节点的值
+  //     this.next = null;  // 指向下一个节点的指针
+  //   }
+  // }
+
+  // // 定义一个函数来合并两个有序链表
+  // function mergeSortedLists(l1, l2) {
+  //   // 创建一个虚拟头节点，用于简化链表操作
+  //   const dummyHead = new ListNode(-1);
+  //   let current = dummyHead; // 用于迭代的当前节点指针
+
+  //   // 遍历两个链表，比较节点的值并逐个合并
+  //   while (l1 !== null && l2 !== null) {
+  //     if (l1.value < l2.value) {
+  //       current.next = l1; // 将l1节点连接到合并后的链表
+  //       l1 = l1.next;     // 移动l1指针到下一个节点
+  //     } else {
+  //       current.next = l2; // 将l2节点连接到合并后的链表
+  //       l2 = l2.next;     // 移动l2指针到下一个节点
+  //     }
+  //     current = current.next; // 移动合并后链表的当前节点指针
+  //   }
+
+  //   // 将剩余的节点连接到合并后的链表末尾
+  //   if (l1 !== null) {
+  //     current.next = l1;
+  //   }
+  //   if (l2 !== null) {
+  //     current.next = l2;
+  //   }
+
+  //   // 返回合并后的链表，跳过虚拟头节点
+  //   return dummyHead.next;
+  // }
+
+ //project2:
+  //Input:
+   // head == 1 -> 2 -> 3
+  //Output: 3 -> 2 -> 1
+  // Singly-linked lists are already defined with this interface:
+    // function ListNode(x) {
+    //   this.value = x;
+    //   this.next = null;
+    // }
+
+    // function reverseLinkedList(head) {
+    //   let prev = null;
+    //   let current = head;
+
+    //   while (current !== null) {
+    //     let next = current.next; // Store the next node
+    //     current.next = prev; // Reverse the next pointer
+
+    //     // Move the pointers one step forward
+    //     prev = current;
+    //     current = next;
+    //   }
+
+    //   // The new head is the previous tail node
+    //   return prev;
+    // }
+
+    // function solution(head) {
+    //   if (head === null) {
+    //     return head
+    //   }
+    //   return reverseLinkedList(head)
+
+    // }
+//project3:
+    //For l = [1, 3, 4, 6] and value = 5, the output should be
+    //       solution(l, value) = [1, 3, 4, 5, 6];
+    // For l = [1, 3, 4, 6] and value = 10, the output should be
+    //       solution(l, value) = [1, 3, 4, 6, 10];
+    // For l = [1, 3, 4, 6] and value = 0, the output should be
+    //       solution(l, value) = [0, 1, 3, 4, 6].
+  // function solution(l, value) {
+  //   let item = new ListNode(value);
+  //   let head = l;
+  //   let prev = null;
+
+  //   // Handle the case where the list is empty
+  //   if (l === null) {
+  //     return item;
+  //   }
+
+  //   // Find the correct position to insert the new node
+  //   while (l !== null && l.value <= value) {
+  //     prev = l;
+  //     l = l.next;
+  //   }
+
+  //   // If the new node should be inserted at the beginning
+  //   if (prev === null) {
+  //     item.next = head;
+  //     return item;
+  //   }
+
+  //   // Insert the new node between prev and l
+  //   prev.next = item;
+  //   item.next = l;
+
+  //   return head;
+  // }
+
+  // project 4: Queue +linked list
+  //e--表示enqueue  d---dequeue
+  // ops: ["e 1", "e 2", "e 3"]
+
+  // result: 1 -> 2 -> 3
+  // ops: ["e 1", "e 2", "d", "e 3"]
+
+  // result: 2 -> 3[Because 1 was dequeued]
+
+ 
+
+  // class ListNode {
+  //   constructor(value) {
+  //     this.value = value;
+  //     this.next = null;
+  //   }
+  // }
+
+  // class LinkedListQueue {
+  //   constructor() {
+  //     this.head = null; // 队列的头部
+  //     this.tail = null; // 队列的尾部
+  //   }
+
+  //   // 入队操作
+  //   enqueue(value) {
+  //     const newNode = new ListNode(value);
+  //     if (!this.head) {
+  //       this.head = newNode;
+  //       this.tail = newNode;
+  //     } else {
+  //       this.tail.next = newNode;
+  //       this.tail = newNode;
+  //     }
+  //   }
+
+  //   // 出队操作
+  //   dequeue() {
+  //     if (!this.head) {
+  //       return; // 队列为空，无法出队
+  //     }
+  //     this.head = this.head.next;
+  //     if (!this.head) {
+  //       this.tail = null; // 如果出队后队列为空，更新尾部
+  //     }
+  //   }
+
+  //   // 构建链表队列并执行操作
+  //   buildQueueFromOperations(ops) {
+  //     for (const operation of ops) {
+  //       const [op, value] = operation.split(' ');
+  //       if (op === 'e') {
+  //         this.enqueue(parseInt(value)); // 入队操作
+  //       } else if (op === 'd') {
+  //         this.dequeue(); // 出队操作
+  //       }
+  //     }
+  //   }
+
+  
+  // }
+
+  // function solution(nodes) {
+  //   let queue = new LinkedListQueue()
+  //   queue.buildQueueFromOperations(nodes)
+  //   let lists = queue.head
+  //   let arr = []
+  //   while (lists !== null) {
+  //     arr.push(lists.value)
+  //     lists = lists.next
+
+  //   }
+  //   return arr
+  // }
+
+  //project 5: stack +linked list
+
+  //Given a string sequence consisting of the characters '(',')','[',']','{','}'
+//You task is to determine whether or not the sequence is a valid bracket sequence.
+//The Valid bracket sequence is defined in the following way:
+  //1.An empty bracket sequence is a valid bracket sequence--说明(),[],{}都是valid
+  //2.If s is a valid bracket sequence then (s),[s],{s} are also valid.---说明将valid 包裹起来，也是valid
+  //3.If A and B are valid bracket sequences then AB is also valid.--说明valid item放在一起也是valid
+//examples:
+//()-->true ; ()[]{}--->true ; ([])--->true
+//(]--->false  ;([)]--->false
+//难点，并不知道有多少的([{([{}])}])的组合
+//方法1:将["(","[","{"]按照出现顺序存在一个array中，然后当出现')','}',']'的时候，于array中最后出现的
+//item进行match，如果match不上就 false，match上，就将array中对应的item删掉，删到最后，会是[]。
+//如何还存在item in array，说明不是一一对应，false
+// function solution(sequence){
+//   let arr=["(","[","{"]
+//   let head=[]
+//   let match={
+//     ")":"(",
+//     "]": "[",
+//     "}": "{",
+//   }
+//  for (let i of sequence){
+//   if(arr.includes(i)){
+//     head.push(i)
+//   }else{
+//     if(match[i]===head.at(-1)){
+//       head.pop()
+//     }else{
+//       console.log(head)
+//       return false
+//     }
+    
+
+//   }
+//  }
+ 
+//  console.log(head)
+// //  if(head.length===0){
+// //   return true
+// //  }else{
+// //    return false
+// //  }
+// //上面内容的简写
+// return head.length === 0
+ 
+
+// }
+
+// //console.log(solution("[()"))
+// //方法2:  create 一个class，然后按照上一个方法的思路进行修改 
+//处理一些 last in，first out 后进，先出的问题---- Stacks
+//  class Stack{
+//   constructor(){
+//     this.stack=[]
+//   }
+//   push(x){
+//     this.stack.push(x)
+//   }
+//   pop(){
+//     return this.stack.pop()
+//   }
+//   //get length() ---length 属性是一个 getter 方法，用于获取堆栈中元素的数量
+//   get length(){
+//     return this.stack.length
+//   }
+//   isEmpty(){
+//     return this.stack.length===0
+//   }
+//  }
+
+//  function solution(sequence){
+//   let origin=new Stack()
+//   let arr = ["(", "[", "{"] 
+//   let match = {
+//     ")":"(",
+//     "]": "[",
+//     "}": "{",
+//   }
+//   for(let i of sequence){
+//     if(arr.includes(i)){
+//       origin.push(i)
+//     }else{
+//       item=origin.pop()
+//       if(item!==match[i]){
+//         return false
+//       }
+
+//       }
+//     }
+//     //return  origin.length === 0
+//     //👆是return length===0的一种方法，👇是另一种return的length===0方法
+//     return origin.isEmpty()
+//   }
+//  console.log(solution("[)]"))
+
+ //project 6: 
+//You are given an array of requests, where requests[i] can be "push <x>" or "pop".
+// Return an array composed of the results of each "pop" operation that is performed.
+//For requests = ["push 1", "push 2", "pop", "push 3", "pop"], the output should be
+//solution(requests) = [1, 2].After the first request, the queue is { 1 }; 
+//after the second it is { 1, 2 }. Then we do the third request, "pop",
+// and add the first element of the queue 1 to the answer array.The queue becomes { 2 }. 
+//After the fourth request, the queue is { 2, 3 }. Then we perform "pop" again and 
+//add 2 to the answer array, and the queue becomes { 3 }.
+  // function solution(requests) {
+  //     var left = [];
+      
+
+  //     function insert(x) {
+  //       left.push(x)
+  //     }
+
+  //     function remove() {
+  //       return left.shift()
+  //     }
+
+  //     ans = [];
+  //     for (var i = 0; i < requests.length; i++) {
+  //       var req = requests[i].split(" ");
+  //       if (req[0] === "push") {
+  //         insert(parseInt(req[1]));
+  //       } else {
+  //         ans.push(remove());
+  //       }
+  //     }
+  //     return ans;
+  //   }
+  
+//专题三：Recursive Linked List Search
+//Search a linked list for a value.Return true if the value was found
+//examples:
+//head:1->7->9
+//value:2
+//result:false
+
+
+
+
+
+//方法1:直接用listed node
+// function ListNode(x){
+//   this.value=x
+//   this.next=null
+// }
+
+// function solution(head,v){
+//    while(head.next!==null){
+//     if(head.value===v){
+//       return true
+//     }else{
+//       head=head.next
+//     }
+
+//    }
+//    if(head.value === v){
+//     return true
+//    }else{
+//     return false
+//    }
+  
+// }
+
+// let h = { value: 1, next: { value: 2, next: { value: 3, next: null } } }
+// console.log(solution(h,4))
+
+//方法2: 结合recursion递归；-----返回的是下一个function（searching the remainder of linked list)
+  // function search(head,value){
+  //   //head=== null 并不表示{ value: 3, next: null }，所以还是会到下一步判断head.value===value
+  //   //如果您要检查一个节点是否为链表的最后一个节点，只有当head.next===null
+  //    if (head=== null ) {
+  //     return false
+  //   }
+  //   if (head.value=== value) {
+  //     return true
+  //   }
+   
+  //   return search(head.next, value)
+    
+  // }
+
+  // function solution(head,value) {
+  //  return search(head,value)
+
+  // }
+
+  // let h = { value: 1, next: { value: 2, next: { value: 3, next: null } } }
+  // console.log(solution(h, 3))
+
+// function solution(x,count=0){
+
+//   if(x>0){
+//     count+=x
+//     return solution(x-1,count)
+//   }else{
+//     return count
+//   }
+  
+// }
+// console.log(solution(5))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
