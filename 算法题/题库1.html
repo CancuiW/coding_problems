@@ -1734,29 +1734,29 @@
 //   [1, 4] corresponds to erase 4. The current counter is equal to 3(since there have been 3 successful allocations), 
 //so we return -1 since there is no range with ID = 4.
 //   [0, 4] corresponds to alloc 4. There is no memory block of length 4 in which all blocks are free, so return -1.
-function alloc(arr,number){
-  let item=''
-  let changed=''
-  for(let m=0;m<number;m++){
-    item+=0
-    changed+=1
+// function alloc(arr,number){
+//   let item=''
+//   let changed=''
+//   for(let m=0;m<number;m++){
+//     item+=0
+//     changed+=1
 
-  }
-  let str= arr.join('')
-  if(str.includes(item)){
+//   }
+//   let str= arr.join('')
+//   if(str.includes(item)){
     
-    let res=str.replace(item,changed)
+//     let res=str.replace(item,changed)
     
-  }
+//   }
   
  
-  return res
+//   return res
 
-}
+// }
 
-let arr=[0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0]
-let num=2
-console.log(alloc(arr,num))
+// let arr=[0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0]
+// let num=2
+// console.log(alloc(arr,num))
 // function solution(memory,queries){
 //   for(let i=0;i<queries.length;i++){
 //     let query=queries[i][0]
@@ -2043,6 +2043,20 @@ console.log(alloc(arr,num))
   //   return count
 
   // }
+  //处理isomorphic同构问题，
+    //  let isIsomorphic = function (s, t) {
+    //     if (s.length !== t.length) {
+    //       return false
+    //     }
+    //     for (let i = 0; i < s.length; i++) {
+    //       if (s.indexOf(s[i]) !== t.indexOf(t[i])) {
+    //         return false
+    //       }
+
+    //     }
+    //     return true
+    //   };
+    //'foo','bar'=>false  'paper','title'=>true
 
 
 
