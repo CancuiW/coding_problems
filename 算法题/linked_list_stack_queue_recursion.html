@@ -276,6 +276,37 @@ c.next=d
   //   }
 
   // };
+  //3.head:1-->2-->3-->4-->5  left:2, right:4
+  //output:1-->4-->3-->2-->5
+//   function ListNode(val, next) {
+//      this.val = (val === undefined ? 0 : val)
+//      this.next = (next === undefined ? null : next)
+//   }
+//   var reverseBetween = function (head, left, right) {
+//       if (!head || left === right) return head;
+
+//       const dummy = new ListNode(0);
+//       dummy.next = head;
+//       let prev = dummy;
+// //在 遇到left之前，还是原来的顺序，不变
+//       for (let i = 0; i < left - 1; ++i) {
+//         prev = prev.next;
+//       }
+
+//       let current = prev.next;
+//       //right - left有两次loop，current一直没变，就是2
+//       for (let i = 0; i < right - left; ++i) {
+//         const nextNode = current.next;
+//         current.next = nextNode.next;
+//         nextNode.next = prev.next;
+//         prev.next = nextNode;
+//       }
+
+//       return dummy.next;
+//     };
+
+
+
 
 //专题一：list node
 //1.give the head of a linked list,a new value,and an index to insert before, make a new node with the given value
