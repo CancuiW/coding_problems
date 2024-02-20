@@ -136,27 +136,27 @@
 //   console.log(solution(aa))
 
 //使用的是recursion，求Sum of all values-----更精简的方法
-  class Nodes {
-    constructor(value) {
-      this.value = value
-      this.left = null
-      this.right = null
-    }
-  }
+  // class Nodes {
+  //   constructor(value) {
+  //     this.value = value
+  //     this.left = null
+  //     this.right = null
+  //   }
+  // }
 
-  const aa = new Nodes(20)
-  const bb = new Nodes(10)
-  const cc = new Nodes(30)
-  const dd = new Nodes(5)
-  const ee = new Nodes(15)
-  const ff = new Nodes(35)
+  // const aa = new Nodes(20)
+  // const bb = new Nodes(10)
+  // const cc = new Nodes(30)
+  // const dd = new Nodes(5)
+  // const ee = new Nodes(15)
+  // const ff = new Nodes(35)
 
 
-  aa.left = bb
-  aa.right = cc
-  bb.left = dd
-  bb.right = ee
-  cc.right = ff
+  // aa.left = bb
+  // aa.right = cc
+  // bb.left = dd
+  // bb.right = ee
+  // cc.right = ff
 //这个方法的思路就是每一个parent都是要两个children的值相加，然后再加上其parent本身的value，
 //所以利用recursion的方法，使得其反复重复上面的内容，其sum一直在反复叠加
 //在最底层时，node的两个children都是=0，所以0+node.value+0就是最底层上传到上一层的sum

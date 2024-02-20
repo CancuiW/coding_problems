@@ -311,8 +311,64 @@ c.next=d
 //       return dummy.next;
 //     };
 
+//4.Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, and return the reversed list.
+//1-->2-->3-->4-->5
+//1-->4-->2-->3-->5
+//给出index的范围，将其中reverse
 
+  // function ListNode(val, next) {
+  // this.val = (val === undefined ? 0 : val)
+  //      this.next = (next === undefined ? null : next)
+  //        }
+  //方法1:
+// var reverseBetween = function(head, left, right) {
+//     if (!head || left === right) return head;
+    
+//     const dummy = new ListNode(0);
+//     dummy.next = head;
+//     let prev = dummy;
+    
+//     for (let i = 0; i < left - 1; ++i) {
+//         prev = prev.next;
+//     }
+    
+//     let current = prev.next;
+    
+//     for (let i = 0; i < right - left; ++i) {
+//         const nextNode = current.next;
+//         current.next = nextNode.next;
+//         nextNode.next = prev.next;
+//         prev.next = nextNode;
+//     }
+    
+//     return dummy.next;
+// };
+//方法2:
+  // var reverseBetween = function (head, left, right) {
+  //   if (left === right || head === null) {
+  //     return head
+  //   }
+  //   let news = new ListNode(0)
+  //   news.next = head
+  //   let pre = news
+  //   for (let i = 0; i < left - 1; i++) {
+  //     pre = pre.next
+  //   }
+  //   let start = null
+  //   let current = pre.next
+  //   for (let i = 0; i < right - left + 1; i++) {
+  //     let dummy = current.next
+  //     current.next = start
+  //     start = current
+  //     current = dummy
+  //   }
+  //   //通过reverse之后，用pre 将中间和最后的联系起来
+  //   pre.next.next = current
+  //   pre.next = start
 
+  //   return news.next
+
+  // }
 
 //专题一：list node
 //1.give the head of a linked list,a new value,and an index to insert before, make a new node with the given value
