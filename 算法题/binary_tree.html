@@ -76,9 +76,11 @@
 //     if (node === null) {
 //       return
 //     }
+    
 //     //arr.push(node.value)//pre-order:先将parent 找到并push
 //     //因为一找到parent就直接push，无论后面如何进行
 //     recursion(node.left)
+    
 //    //arr.push(node.value)//in-order:按照从左到右，从小到大排列
 //    //在中间push就是必须要上面的left操作全部完成之后才能push，然后再进行right side的操作（之前的值先放好，等待child处理完后再处理），
 //     recursion(node.right)
@@ -91,6 +93,49 @@
 
 // }
 // console.log(solution(a))
+
+//难题：得知preorder 和inorder，如何得到binary tree
+// preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+  //Output: [3, 9, 20, null, null, 15, 7]
+    //        3
+    //       / \
+    //      9   20
+    //         / \
+    //        15  7
+
+  // function TreeNode(val, left, right) {
+  //      this.val = (val === undefined ? 0 : val)
+  //      this.left = (left === undefined ? null : left)
+  //        this.right = (right === undefined ? null : right)
+  //   }
+  //   var buildTree = function (preorder, inorder) {
+  //       //preorder:root,left,right.  [3,9,20,15,7]
+  //       //inorder:left,root,right.  [9,3,15,20,7]
+  //       if (!preorder.length && !inorder.length) return null
+  //       //if(!preorder.length|| !inorder.length)return null 也是可以的 
+  //       let root = new TreeNode(preorder[0])
+  //       let midIndex = inorder.indexOf(preorder[0])
+  //       root.left = buildTree(preorder.slice(1, midIndex + 1), inorder.slice(0, midIndex))
+  //       root.right = buildTree(preorder.slice(midIndex + 1), inorder.slice(midIndex + 1))
+  //       return root
+
+  //     };
+
+  //难题：得知inorder和postorder，如何得到binary tree
+  // Input: inorder = [9, 3, 15, 20, 7], postorder = [9, 15, 7, 20, 3]
+  //   Output: [3, 9, 20, null, null, 15, 7]
+  // var buildTree = function (inorder, postorder) {
+  //     if (!inorder.length || !postorder) return null
+  //     let root = new TreeNode(postorder.at(-1))
+  //     let midIndex = inorder.indexOf(postorder.at(-1))
+  //     let leftRange = inorder.slice(0, midIndex)
+  //     root.left = buildTree(leftRange, postorder.slice(0, leftRange.length))
+  //     root.right = buildTree(inorder.slice(midIndex + 1), postorder.slice(leftRange.length, postorder.length - 1))
+
+  //     return root
+
+
+  //   };
   //方法3： 使用的是recursion，直接利用spread operator
   // function solution(nodes){
   //   if(nodes===null)return []
