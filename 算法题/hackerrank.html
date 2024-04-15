@@ -15,6 +15,7 @@
   
   
   <script>
+  
   //1.  ' '.repeat(num)重复多少次string
   function staircase(n){
     let i=1
@@ -24,8 +25,30 @@
       i++
     }
   }
+  //console.log(staircase(6))
+  
+  //2.找到唯一值，条件，每个都重复两次，且只有一个是唯一值
+  //Example：a=[1,2,3,4,3,2,1] The unique element is 4
+  function lonelyinteger(a) {
+      
+      if (a.length === 1) return a[0]
+      let arr = a.slice().sort((a, b) => a - b)
 
-console.log(staircase(6))
+      let i = 0
+      while (i < arr.length) {
+        if (arr[i] === arr[i + 1]) {
+
+          i += 2
+        } else {
+          return arr[i]
+        }
+      }
+      return null
+
+    }
+
+
+
 
 
 
