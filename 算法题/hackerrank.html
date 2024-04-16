@@ -17,37 +17,47 @@
   <script>
   
   //1.  ' '.repeat(num)重复多少次string
-  function staircase(n){
-    let i=1
-    while(i<=n){
-      let item=' '.repeat(n-i)+'#'.repeat(i)
-      console.log(item)
-      i++
-    }
-  }
+  // function staircase(n){
+  //   let i=1
+  //   while(i<=n){
+  //     let item=' '.repeat(n-i)+'#'.repeat(i)
+  //     console.log(item)
+  //     i++
+  //   }
+  // }
   //console.log(staircase(6))
   
   //2.找到唯一值，条件，每个都重复两次，且只有一个是唯一值
   //Example：a=[1,2,3,4,3,2,1] The unique element is 4
-  function lonelyinteger(a) {
+  // function lonelyinteger(a) {
       
-      if (a.length === 1) return a[0]
-      let arr = a.slice().sort((a, b) => a - b)
+  //     if (a.length === 1) return a[0]
+  //     let arr = a.slice().sort((a, b) => a - b)
 
-      let i = 0
-      while (i < arr.length) {
-        if (arr[i] === arr[i + 1]) {
+  //     let i = 0
+  //     while (i < arr.length) {
+  //       if (arr[i] === arr[i + 1]) {
 
-          i += 2
-        } else {
-          return arr[i]
-        }
-      }
-      return null
+  //         i += 2
+  //       } else {
+  //         return arr[i]
+  //       }
+  //     }
+  //     return null
 
-    }
+  //   }
 
+  //3.就是对2nx2n matrix，如何reverse rows or columns 使得右上角的nxn中每个数相加得到最大值
 
+  //2nx2n matrix where each cell of the matrix contains an integer.We can reverse any 
+  //of its rows or columns andy number of times.The goal of the game is to maximize the sum 
+  //of the elements in the nXn submatrix located in the upper-left quadrant of the matrix.
+  //Give the initial configurations for q matrices, help us reverse the rows and columns of 
+  //each matrix in the best possible way so that the sum of the elements in the matrix's upper-left
+  // quadrant is maximal.
+  //Eg:Matrix=[[1,2],[3,4]]--->4,
+  //matrix=[[112,42,83,119],[56,125,56,49],[15,78,101,43],[62,98,114,108]]-->119+114+56+125=414,
+  
 
 
 
