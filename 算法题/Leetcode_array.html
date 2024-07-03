@@ -838,25 +838,27 @@
 // 找到每一个 较大分组 的区间，按起始位置下标递增顺序排序后，返回结果。
   //解题思路 #
   //  简单题。利用滑动窗口的思想，先扩大窗口的右边界，找到能相同字母且能到达的最右边。记录左右边界。再将窗口的左边界移动到上一次的右边界处。以此类推，重复扩大窗口的右边界，直至扫完整个字符串。最终所有满足题意的较大分组区间都在数组中了。
-  function largeGroupPositions(S) {
-    const res = [];
-    let end = 0;
+  // function largeGroupPositions(S) {
+  //   const res = [];
+  //   let end = 0;
 
-    while (end < S.length) {
-      let start = end;
-      let char = S[end];
+  //   while (end < S.length) {
+  //     let start = end;
+  //     let char = S[end];
 
-      while (end < S.length && S[end] === char) {
-        end++;
-      }
+  //     while (end < S.length && S[end] === char) {
+  //       end++;
+  //     }
 
-      if (end - start >= 3) {
-        res.push([start, end - 1]);
-      }
-    }
+  //     if (end - start >= 3) {
+  //       res.push([start, end - 1]);
+  //     }
+  //   }
 
-    return res;
-  }
+  //   return res;
+  // }
+
+  
 
  </script>
 
