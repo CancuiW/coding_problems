@@ -2717,10 +2717,27 @@
 //     return res
 //   }
 
+//   503. Next Greater Element II
+//   Given a circular array(the next element of the last element is the first element of the array), print the Next Greater Number for every element.The Next Greater Number of a number x is the first greater number to its traversing - order next in the array, which means you could search circularly to find its next greater number.If it doesn’t exist, output - 1 for this number.
 
-
-
-
+// // 解法一 单调栈
+// func nextGreaterElements(nums[]int)[]int {
+//     res:= make([]int, 0)
+//     indexes:= make([]int, 0)
+//     for i := 0; i < len(nums); i++ {
+//       res = append(res, -1)
+//     }
+//     for i := 0; i < len(nums) * 2; i++ {
+//       num:= nums[i % len(nums)]
+//       for len(indexes) > 0 && nums[indexes[len(indexes) - 1]] < num {
+//         index:= indexes[len(indexes) - 1]
+// 			res[index] = num
+// 			indexes = indexes[: len(indexes)- 1]
+//     }
+//     indexes = append(indexes, i % len(nums))
+//   }
+//   return res
+// }
  
  </script>
 </body>
