@@ -2738,6 +2738,29 @@
 //   }
 //   return res
 // }
+
+// 解法二
+// func nextGreaterElements1(nums[]int)[]int {
+//     if len(nums) == 0 {
+//       return []int{ }
+//     }
+//     res:= []int{ }
+//     for i := 0; i < len(nums); i++ {
+//       j, find := (i + 1) % len(nums), false
+//       for j != i {
+//         if nums[j] > nums[i] {
+//           find = true
+// 				res = append(res, nums[j])
+// 				break
+// 			}
+// 			j = (j + 1) % len(nums)
+//     }
+//     if !find {
+//       res = append(res, -1)
+//     }
+//   }
+//   return res
+// }
  
  </script>
 </body>
