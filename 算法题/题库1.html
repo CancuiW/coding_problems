@@ -2963,10 +2963,25 @@
 //   return res
 // }
 
+//   907. Sum of Subarray Minimums
+// Given an array of integers A, find the sum of min(B), where B ranges over every(contiguous) subarray of A.
+// Since the answer may be large, return the answer modulo 10 ^ 9 + 7.
 
-
-
-
+// func sumSubarrayMins2(A[]int) int {
+//     res, mod := 0, 1000000007
+//     for i := 0; i < len(A); i++ {
+//       stack:= []int{ }
+//       stack = append(stack, A[i])
+//       for j := i; j < len(A); j++ {
+//         if stack[len(stack) - 1] >= A[j] {
+//           stack = stack[: len(stack) - 1]
+//           stack = append(stack, A[j])
+//         }
+//         res += stack[len(stack) - 1]
+//       }
+//     }
+//     return res % mod
+//   }
 
 
 
