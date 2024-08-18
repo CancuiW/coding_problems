@@ -2095,7 +2095,52 @@
 //Deleterear()
 //Display()
 
+//3.Profit Targets
+//A financial analyst is respinsible for a portfolio of profitable stocks represented in an array.
+//Each item in the array represents the yearly profit of a corresponding stock.
+//The analyst gathers all distinct pairs of stocks that reached the target profit. Distinct pairsare pairs
+//that differ in at least one element.Given the array of profits, find the number of distinct pairs of
+//stocks where the sum of each pair's profits is exactly equal to the target profit.
+//
+  // function stockPairs(stocksProfit, target) {
 
+
+  //   let seen = new Set();
+  //   let pairs = new Set();
+
+  //   for (let profit of stocksProfit) {
+  //     let complement = target - profit;
+  //     if (seen.has(complement)) {
+  //       let pair = [Math.min(profit, complement), Math.max(profit, complement)];
+  //       pairs.add(pair.toString());
+  //     }
+  //     seen.add(profit);
+  //   }
+
+  //   return pairs.size;
+
+
+  // }
+
+//new Set() 是 JavaScript 中用来创建一个 Set 对象的语法。
+
+// Set 是一种特殊的数据结构，它类似于数组，但与数组不同的是，Set 中的每个值都是唯一的，也就是说，它不会包含任何重复的值。
+
+//     主要特点：
+//     唯一性：Set 中的值是唯一的，不能重复。
+//     大小：Set 的大小可以通过 size 属性来获取。
+//     自动去重：当你将多个相同的值添加到 Set 中时，Set 只会保留一个。
+//     遍历：可以使用 for...of 循环或 forEach 方法来遍历 Set 中的元素。
+//     常用方法：
+//     add(value)：向 Set 中添加一个新元素。如果该元素已经存在，则不会添加。
+//     delete (value)：从 Set 中删除指定的元素。
+//     has(value)：检查 Set 中是否存在指定的元素，返回 true 或 false。
+//     clear()：清空 Set 中的所有元素。
+//     size：获取 Set 中元素的数量。
+
+
+//4.User-Friendly Password System
+//A website is 
   </script>
 </body>
 
