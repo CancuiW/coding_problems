@@ -3239,7 +3239,25 @@
 // 	}
 //   return res
 // }
-
+// 解法二 DFS
+// func levelOrder1(root * TreeNode)[][]int {
+//     var res [][]int
+//     var dfsLevel func(node * TreeNode, level int)
+//     dfsLevel = func(node * TreeNode, level int) {
+//       if node == nil {
+//         return
+//       }
+//       if len(res) == level {
+//         res = append(res, []int{ node.Val })
+//       } else {
+//         res[level] = append(res[level], node.Val)
+//       }
+//       dfsLevel(node.Left, level + 1)
+//       dfsLevel(node.Right, level + 1)
+//     }
+//     dfsLevel(root, 0)
+//     return res
+//   }
 
 
 
