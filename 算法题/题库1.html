@@ -2101,6 +2101,12 @@
 //The analyst gathers all distinct pairs of stocks that reached the target profit. Distinct pairsare pairs
 //that differ in at least one element.Given the array of profits, find the number of distinct pairs of
 //stocks where the sum of each pair's profits is exactly equal to the target profit.
+ //  example： stocksProfit=[5，7，9，13，11，6，6，3，3]
+ // target=12
+ //There are 4 pairs of stocks that have the sum of their profits equals to the target 12.Note that because there are
+ // two instances of 3 in stocksProfit there are two pairs matching(9,3):stockProfits indices 2 and 7,and indices 2 and 8,
+ //but only one can be included.
+ //There are 3 distinct pairs of stocks:(5,7),(3,9),and (6,6) and the return value is 3
 //
   // function stockPairs(stocksProfit, target) {
 
@@ -2160,9 +2166,66 @@
   // });
 // ------------------------  /\d/.test(x) ----->表示是不是数字
 // ------------------------  /(\W+/) ----->非字母
+  function setPassword(str) {
+      let arr = str.split('').map(x => parseInt(x.charCodeAt(0)));
+      let sum = 0;
+      let Mod = (10 ** 9) + 7;
 
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i] * (131 ** (arr.length - i - 1));
+      }
 
-	  
+      let res = sum % Mod;
+      console.log(`String: ${str}, Hash: ${res}`); // 输出字符串及其对应的哈希值
+      return res;
+    }
+
+    function authEvents(events) {
+      let word = []; // 存储哈希值
+      let check = []; // 存储验证结果
+
+      for (let i = 0; i < events.length; i++) {
+        if (events[i][0] === 'setPassword') {
+          let letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+          let combined = letters.map(x => events[i][1] + x);
+
+          // 对原始字符串生成哈希值
+          let hashOriginal = setPassword(events[i][1]);
+          word.push(hashOriginal);
+
+          // 对原始字符串+字母的组合生成哈希值
+          for (let j = 0; j < combined.length; j++) {
+            let hashCombined = setPassword(combined[j]);
+            word.push(hashCombined);
+          }
+        } else if (events[i][0] === 'authorize') {
+          let authValue = parseInt(events[i][1]);
+          if (word.includes(authValue)) {
+            check.push(1);
+          } else {
+            check.push(0);
+          }
+        }
+      }
+
+      console.log("Stored hash values: ", word); // 打印所有存储的哈希值
+      return check;
+    }
+
+    // 测试
+    let events = [
+      ['setPassword', 'a'],
+      ['authorize', '97'],
+      ['authorize', '12756'],
+      ['authorize', '12804'],
+      ['authorize', '12829'],
+      ['authorize', '12772'],
+      ['authorize', '12797'],
+      ['authorize', '98']
+    ];
+
+    console.log(authEvents(events));
+
   </script>
 </body>
 

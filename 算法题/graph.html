@@ -534,42 +534,53 @@
     // let a=[[1,2,3],[2,3],[3],[]]
     // console.log(solution(a))
 // Tiktok --- Dijkstra算法
-  function  Dijkstra(graph, startProduct) {
-    let n = gragh.length
-    let minDistances=new Array(n).fill(Infinity)
-    let visited=new Array(n).fill(false)
-    minDistances[startProduct]=0
-    for(let i=0;i<n;i++){
-      let minIndex=-1
-      for(let j=0;j<n;j++){
-        if(!visited[j]&&(minIndex===-1|| minDistances[minIndex])){
-          minIndex=j
-        }
-      }
-      if(minDistances[minIndex]===Infinity){
-        break
-      }
-      visited[minIndex]=true
-      for(let j=0;j<n;j++){
-        if(graph[minIndex][j]!==0){
-          let potentialDist=minDistances[minIndex]+graph[minIndex][j]
-          if(potentialDist<minDistances[j]){
-            minDistances[j]=potentialDist
-          }
+// An e-commerce company has a platform that uses an algorithm to suggest products to 
+// users. It use a graph-based approach, where each node represents a product, and the edges
+// between them represent similarities. To avoid recommending too many similar items, they
+// implement a modified version of Dijkstra's algorithm that takes into account the similarity score.
 
-        }
-      }
-    }
-    return minDistances
-  } 
-  let gragh=[
-    [0,2,0,1,0],
-    [2,0,3,0,0],
-    [0,3,0,4,0],
-    [1,0,4,0,5],
-    [0,0,0,5,0]
-  ]
-  console.log(Dijkstra(gragh,0))
+// what is the output when the recommendation system calls dijkstra(graph,0).to find the least similar products to the current product(Product 0)
+// A:[0,2,5,1,6]
+// B:[0,1,4,2,7]
+// C:[0,2,3,1,5]
+// D:[0,2,3,1,6]
+
+// function  Dijkstra(graph, startProduct) {
+//     let n = gragh.length
+//     let minDistances=new Array(n).fill(Infinity)
+//     let visited=new Array(n).fill(false)
+//     minDistances[startProduct]=0
+//     for(let i=0;i<n;i++){
+//       let minIndex=-1
+//       for(let j=0;j<n;j++){
+//         if(!visited[j]&&(minIndex===-1|| minDistances[minIndex])){
+//           minIndex=j
+//         }
+//       }
+//       if(minDistances[minIndex]===Infinity){
+//         break
+//       }
+//       visited[minIndex]=true
+//       for(let j=0;j<n;j++){
+//         if(graph[minIndex][j]!==0){
+//           let potentialDist=minDistances[minIndex]+graph[minIndex][j]
+//           if(potentialDist<minDistances[j]){
+//             minDistances[j]=potentialDist
+//           }
+
+//         }
+//       }
+//     }
+//     return minDistances
+//   } 
+//   let gragh=[
+//     [0,2,0,1,0],
+//     [2,0,3,0,0],
+//     [0,3,0,4,0],
+//     [1,0,4,0,5],
+//     [0,0,0,5,0]
+//   ]
+//   console.log(Dijkstra(gragh,0))
      
   </script>
 
