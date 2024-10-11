@@ -3338,9 +3338,16 @@
 //     return hasPathSum(root.Left, sum - root.Val) || hasPathSum(root.Right, sum - root.Val)
 //   }
 
+//   113. Path Sum II
+// Given a binary tree and a sum, find all root - to - leaf paths where each path’s sum equals the given sum.
 
-
-
+//     Note: A leaf is a node with no children.
+//  解法一
+// func pathSum(root * TreeNode, sum int)[][]int {
+//     var slice [][]int
+//     slice = findPath(root, sum, slice, []int(nil))
+//     return slice
+//   }
 
  </script>
 </body>
