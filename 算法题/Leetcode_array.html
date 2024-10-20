@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+   
+// 0001:Two Sum
+// 意思就是说要从一个array中找到"唯一"一对数字（a,b),a+b=target
+// 返回的是(a,b)相对应的index
+// Input: nums = [3,2,4], target = 6
+// Output: [1, 2]
+
+//   最优的做法时间复杂度是 O(n)
+    function twoSum(nums, target) {
+        const map = {};
+
+        for (let i = 0; i < nums.length; i++) {
+            const another = target - nums[i];
+            if (another in map) {
+                return [map[another], i];
+            }
+            map[nums[i]] = i;
+        }
+
+        return null;
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
