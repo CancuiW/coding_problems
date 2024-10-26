@@ -16,27 +16,29 @@
   
   <script>
    
-// 0001:Two Sum
+// ----------------------------------0001:Two Sum----------------------------------
 // 意思就是说要从一个array中找到"唯一"一对数字（a,b),a+b=target
 // 返回的是(a,b)相对应的index
 // Input: nums = [3,2,4], target = 6
 // Output: [1, 2]
 
 //   最优的做法时间复杂度是 O(n)
-    function twoSum(nums, target) {
-        const map = {};
+    // function twoSum(nums, target) {
+    //     const map = {};
 
-        for (let i = 0; i < nums.length; i++) {
-            const another = target - nums[i];
-            if (another in map) {
-                return [map[another], i];
-            }
-            map[nums[i]] = i;
-        }
+    //     for (let i = 0; i < nums.length; i++) {
+    //         const another = target - nums[i];
+    //         if (another in map) {
+    //             return [map[another], i];
+    //         }
+    //         map[nums[i]] = i;
+    //     }
 
-        return null;
-    }
-  
+    //     return null;
+    // }
+  // ----------------------------------00026:Remove Duplicates from Sorted Array----------------------------------
+  // 难点：就是return的还是原来的array，return原来array中唯一的item的length
+  //【1，1，2】-->return 2   array变成[1,2,1]，只返回前两个item的长度
 
 
 
