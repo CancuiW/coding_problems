@@ -37,10 +37,33 @@
     //     return null;
     // }
   // ----------------------------------00026:Remove Duplicates from Sorted Array----------------------------------
+  // 题目条件：array不是一个降序的array
+  //给定一个有序数组 nums，对数组中的元素进行去重，使得原数组中的每个元素只有一个。最后返回去重以后数组的长度值。
   // 难点：就是return的还是原来的array，return原来array中唯一的item的length
-  //【1，1，2】-->return 2   array变成[1,2,1]，只返回前两个item的长度
+  //[0,0,1,1,1,2,2,3,3,4]
+  //[0,1,2,3,4]-->return 5  
+//分析：
+  
+  //           i
+  //[0,1,2,3,4,1,2,2,3,3,4]
+  //                   c
+  function removeDuplicates(nums) {
+      if (nums.length === 0) {
+        return 0;
+      }
 
+      let insertIndex = 1
+      for(let current =0; current <nums.length-1; current++){
+        if(nums[current]!==nums[current+1]){
+          nums[insertIndex] = nums[current + 1]
+          insertIndex++
+        }
+      }
+      return insertIndex
 
+      
+    }
+  //[1]
 
 
 
