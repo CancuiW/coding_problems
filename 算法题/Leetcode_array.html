@@ -47,23 +47,23 @@
   //           i
   //[0,1,2,3,4,1,2,2,3,3,4]
   //                   c
-  function removeDuplicates(nums) {
-      if (nums.length === 0) {
-        return 0;
-      }
+  // function removeDuplicates(nums) {
+  //     if (nums.length === 0) {
+  //       return 0;
+  //     }
 
-      let insertIndex = 1
-      for(let current =0; current <nums.length-1; current++){
-        if(nums[current]!==nums[current+1]){
-          nums[insertIndex] = nums[current + 1]
-          insertIndex++
-        }
-      }
-      return insertIndex
+  //     let insertIndex = 1
+  //     for(let current =0; current <nums.length-1; current++){
+  //       if(nums[current]!==nums[current+1]){
+  //         nums[insertIndex] = nums[current + 1]
+  //         insertIndex++
+  //       }
+  //     }
+  //     return insertIndex
 
       
-    }
-  //[1]
+  //   }
+  
 
 
 
