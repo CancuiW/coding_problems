@@ -99,25 +99,26 @@
 
   // }
 
-  function searchInsert(nums, target) {
-      let low = 0, high = nums.length - 1;
+  // function searchInsert(nums, target) {
+  //     let low = 0, high = nums.length - 1;
 
-      while (low <= high) {
-        let mid = low + Math.floor((high - low) /2 );
+  //     while (low <= high) {
+  //       let mid = low + Math.floor((high - low) / 2);
 
-        if (nums[mid] === target) {
-          return mid
-        } 
-        if(nums[mid] >target){
-          high=mid-1
-        }else{
-          low=mid+1
-        }
-      }
+  //       if (nums[mid] === target) {
+  //         return mid
+  //       }
+  //       if (nums[mid] > target) {
+  //         high = mid - 1
+  //       } else {
+  //         low = mid + 1
+  //       }
+  //     }
 
-      return low;
+  //     return low;
 
-    }
+  //   }
+
 
 
 
