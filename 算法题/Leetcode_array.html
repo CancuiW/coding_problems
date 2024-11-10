@@ -167,7 +167,17 @@
 //   Explanation: The array represents the integer 9.Incrementing by one gives 9 + 1 = 10.
 //   Thus, the result should be[1, 0].
 
+  function  plusOne(digits) {
+    let leng = digits.length
+    let sum = 0
+    for (let i = 0; i < leng; i++) {
+      let num = digits[i] * (10 ** (leng - i - 1))
+      sum += num
+    }
 
+    return (sum + 1).toString().split('').map(x => parseInt(x))
+
+  };
 
 
 
