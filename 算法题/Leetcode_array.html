@@ -178,6 +178,19 @@
     return (sum + 1).toString().split('').map(x => parseInt(x))
 
   };
+  
+  for (let i = digits.length - 1; i >= 0; i--) {
+      digits[i]++;
+      if (digits[i] !== 10) {
+        // 没有进位
+        return digits;
+      }
+      // 进位
+      digits[i] = 0;
+    }
+    // 如果所有位都是 9，需要在开头插入一个 1
+    digits.unshift(1);
+    return digits;
 
 
 
