@@ -166,34 +166,22 @@
 //   Output: [1, 0]
 //   Explanation: The array represents the integer 9.Incrementing by one gives 9 + 1 = 10.
 //   Thus, the result should be[1, 0].
+// O(N) Time complexity. O(1) Space complexity.
+ 
+  function plusOne(digits) {
+    for (let i = digits.length - 1; i >= 0; i--) {
+      if (digits[i] < 9) {
+        digits[i]++
+        return digits
+      } else {
+        digits[i] = 0
+      }
 
-  // function  plusOne(digits) {
-  //   let leng = digits.length
-  //   let sum = 0
-  //   for (let i = 0; i < leng; i++) {
-  //     let num = digits[i] * (10 ** (leng - i - 1))
-  //     sum += num
-  //   }
+    }
+    digits.unshift(1)
+    return digits
 
-  //   return (sum + 1).toString().split('').map(x => parseInt(x))
-
-  // };
-  //  function plusOne(digits) {
-  // for (let i = digits.length - 1; i >= 0; i--) {
-  //     digits[i]++;
-  //     if (digits[i] !== 10) {
-  //       // 没有进位
-  //       return digits;
-  //     }
-  //     // 进位
-  //     digits[i] = 0;
-  //   }
-  //   // 如果所有位都是 9，需要在开头插入一个 1
-  //   digits.unshift(1);
-  //   return digits;
-  // };
-
-
+  }
 
 
 
