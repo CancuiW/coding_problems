@@ -223,7 +223,62 @@
 
     // }
 
+    // ----------------------------------00118:Pascals Triangle---------------------------------- 
+  //踢出最开始的两行，后面的每一行（除了第一和最后一个number以外，中间的每个数字都是上一行的前一个数和后一个数相加）
+  //   function generate (numRows) {
+  //   if (numRows === 0) return []
+  //   if (numRows === 1) return [[1]]
 
+  //   let triangle = [[1]]
+  //   for (let i = 1; i < numRows; i++) {
+  //     let prevRow = triangle[i - 1]
+  //     let curRow = []
+  //     curRow.push(1)
+  //     for (let j = 1; j < prevRow.length; j++) {
+  //       curRow[j] = prevRow[j] + prevRow[j - 1]
+
+  //     }
+  //     curRow.push(1)
+  //     triangle.push(curRow)
+  //   }
+  //   return triangle
+
+  // };
+
+   // ----------------------------------00118:Pascals Triangle 2 ---------------------------------- 
+//就return 指定的一行row   
+//方法1:按照之前的逻辑思维---> O(N^2) Time complexity. 
+  // function generate(rowIndex) {
+  //   if (rowIndex === 0) return [1]
+  //       let trangle = [[1], [1, 1]]
+  //       for (let i = 2; i <= rowIndex; i++) {
+  //         let preRow = trangle[i - 1]
+  //         let curRow = []
+  //         curRow.push(1)
+  //         for (let j = 1; j < preRow.length; j++) {
+  //           curRow[j] = preRow[j - 1] + preRow[j]
+  //         }
+  //         curRow.push(1)
+  //         trangle.push(curRow)
+
+  //       }
+  //       return trangle.pop()
+
+  //     };
+
+//方法2，利用Pascals Triangle中每个数值都和前一个数相关联，有公式，记住公式就可以了
+//O(n) Time/space complexity
+
+
+      function generate(rowIndex) {
+        const row = new Array(rowIndex + 1).fill(0);//创建一个比rowIndex更多一个item的array，因为发现每一排都会比rowIndex多一个
+        row[0] = 1; // 第一项固定为 1
+        for (let i = 1; i <= rowIndex; i++) {
+          row[i] = row[i - 1] * (rowIndex - i + 1) / i;//这个就是公式，一个个计算每一个number
+        }
+        return row;
+
+      }
   </script>
 
 </body>
