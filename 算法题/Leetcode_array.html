@@ -19,7 +19,7 @@
 // ----------------------------------0001:Two Sum----------------------------------
 // 意思就是说要从一个array中找到"唯一"一对数字（a,b),a+b=target
 // 返回的是(a,b)相对应的index
-// Input: nums = [3,2,4], target = 6
+// Input: nums = [3,2,4], target = 6 // 3:0,4:1,2:2
 // Output: [1, 2]
 
 //   最优的做法时间复杂度是 O(n)
@@ -36,6 +36,33 @@
 
     //     return null;
     // }
+
+  // ----------------------------------000167. Two Sum II - Input Array Is Sorted----------------------------------
+//一个升序的array，找到其中两个num1+num2=target.return 两个index+1
+//Input: numbers = [2, 7, 11, 15], target = 9
+//Output: [1, 2]
+//Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].
+//方法1:按照0001:Two Sum的思路，只需要将储存的index+1
+
+
+//方法2:双指针（左右两边向中间靠拢）方法非常高效，特别适用于已排序的数组中寻找满足条件的两个元素的问题。
+  // function twoSum167(numbers, target) {
+  //    let i = 0, j = numbers.length - 1;
+  //   while (i < j) {
+  //     if (numbers[i] + numbers[j] === target) {
+  //       return [i + 1, j + 1]; // 返回的是 1 基索引
+  //     }
+  //     if (numbers[i] + numbers[j] < target) {
+  //       i++;
+  //     } else {
+  //       j--;
+  //     }
+  //   }
+  //   return null;
+  // }
+
+
+
   // ----------------------------------00026:Remove Duplicates from Sorted Array----------------------------------
   // 题目条件：array不是一个降序的array
   //给定一个有序数组 nums(从小到大排列，所以重复项肯定是在旁边），对数组中的元素进行去重，使得原数组中的每个元素只有一个。最后返回去重以后数组的长度值。
@@ -270,15 +297,17 @@
 //O(n) Time/space complexity
 
 
-      function generate(rowIndex) {
-        const row = new Array(rowIndex + 1).fill(0);//创建一个比rowIndex更多一个item的array，因为发现每一排都会比rowIndex多一个
-        row[0] = 1; // 第一项固定为 1
-        for (let i = 1; i <= rowIndex; i++) {
-          row[i] = row[i - 1] * (rowIndex - i + 1) / i;//这个就是公式，一个个计算每一个number
-        }
-        return row;
+      // function generate(rowIndex) {
+      //   const row = new Array(rowIndex + 1).fill(0);//创建一个比rowIndex更多一个item的array，因为发现每一排都会比rowIndex多一个
+      //   row[0] = 1; // 第一项固定为 1
+      //   for (let i = 1; i <= rowIndex; i++) {
+      //     row[i] = row[i - 1] * (rowIndex - i + 1) / i;//这个就是公式，一个个计算每一个number
+      //   }
+      //   return row;
 
-      }
+      // }
+
+  
   </script>
 
 </body>
