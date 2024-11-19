@@ -342,6 +342,25 @@
   //   return output 
     
   // }
+
+      // ----------------------------------00283. Move Zeroes ---------------------------------- 
+//Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+//Note that you must do this in -place without making a copy of the array.
+//意思就是说在一个array中，将‘0’放在array的最后，其他的以此往前排，并且就在origin array中进行修改
+  //O(n) Time complexity     O(1)Space complexity
+  // function moveZeroes(nums) {
+  //   let left = 0
+  //   let right = 0
+  //   while (right < nums.length) {
+  //     if (nums[right] !== 0) {
+  //       [nums[left], nums[right]] = [nums[right], nums[left]]// flip two item
+  //       left++
+  //     }
+  //     right++
+  //   }
+  //   return nums
+
+  // };
   </script>
 
 </body>
