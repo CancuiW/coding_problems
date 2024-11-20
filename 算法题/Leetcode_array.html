@@ -343,11 +343,13 @@
     
   // }
 
-      // ----------------------------------00283. Move Zeroes ---------------------------------- 
+// ----------------------------------00283. Move Zeroes ---------------------------------- 
 //Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 //Note that you must do this in -place without making a copy of the array.
 //意思就是说在一个array中，将‘0’放在array的最后，其他的以此往前排，并且就在origin array中进行修改
-  //O(n) Time complexity     O(1)Space complexity
+ //Input: nums = [0,1,0,3,12]
+ // Output: [1, 3, 12, 0, 0] 
+//O(n) Time complexity     O(1)Space complexity
   // function moveZeroes(nums) {
   //   let left = 0
   //   let right = 0
@@ -361,6 +363,85 @@
   //   return nums
 
   // };
+
+  // ----------------------------------00414. Third Maximum Number ---------------------------------- 
+  
+  //Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+  //就是找到array中的第三大的数，找不到就找最大的数
+  //Input: nums = [2,2,3,1]
+  // Output: 1
+  //Explanation:
+// The first distinct maximum is 3.
+// The second distinct maximum is 2(both 2's are counted together since they have the same value).
+// The third distinct maximum is 1.
+// O(n) time complexity
+// -Infinity 初始值最小的情况
+  // function thirdMax (nums) {
+  //   let a = -Infinity, b = -Infinity, c = -Infinity 
+  //   for (let item of nums) {
+  //     if (item > a) {
+  //       c = b
+  //       b = a
+  //       a = item
+  //     } else if (item < a && item > b) {
+  //       c = b
+  //       b = item
+  //     } else if (item < b && item > c) {
+  //       c = item
+  //     }
+  //   }
+  //   return c === -Infinity ? a : c
+
+
+  // };
+   // ----------------------------------00448. Find All Numbers Disappeared in an Array ---------------------------------- 
+  //Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
+  //升级要求：Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+  //这个题的大体意思就是说一个在一个[1,n]的array中找到missing items
+  
+  //Example 1:
+  //Input: nums = [4, 3, 2, 7, 8, 2, 3, 1]
+  //Output: [5, 6]
+  //方法1:是create一个set 集，用set.has(item)这种O(1)的方式查找。但是这个方法会引入一个新的space，所以不是最优解
+  // function findDisappearedNumbers (nums) {
+  //   let notAppear = []
+    //     let set=new Set(nums)
+    //     for(let i=1;i<=nums.length;i++){
+    //         if(!set.has(i)){
+    //             notAppear.push(i)
+    //         }
+
+    //     }
+    //     return notAppear
+
+  //}
+//方法2:为了不创建新的数集，就只能在原来的nums进行修改，
+//观察发现将[1,n]中所有的item都-1，对应的就是所有items的index集[0,n-1]，然后对每个index进行标记（标为负数），
+//最后只要查看哪些没有标记的index，+1就是missing item
+  function findDisappearedNumbers(nums) {
+    let res=[]
+     // 标记数组中出现的数字(设为负数)
+    for(let item of nums){
+      let index=Math.abs(item)-1// 获取索引
+      if(nums[index]>0){
+        nums[index]= -nums[index] // 将对应位置的值变为负数
+      }
+    }
+        // 找到所有未标记的索引
+    for(let i=0;i<nums.length;i++ ){
+      if(nums[i]>0){
+        res.push(i+1)// 未标记的位置即为缺失的数字
+      }
+    }
+    return res
+
+
+    
+
+
+  }
+  
+  
   </script>
 
 </body>
