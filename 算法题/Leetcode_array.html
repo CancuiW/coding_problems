@@ -418,30 +418,47 @@
 //方法2:为了不创建新的数集，就只能在原来的nums进行修改，
 //观察发现将[1,n]中所有的item都-1，对应的就是所有items的index集[0,n-1]，然后对每个index进行标记（标为负数），
 //最后只要查看哪些没有标记的index，+1就是missing item
-  function findDisappearedNumbers(nums) {
-    let res=[]
-     // 标记数组中出现的数字(设为负数)
-    for(let item of nums){
-      let index=Math.abs(item)-1// 获取索引
-      if(nums[index]>0){
-        nums[index]= -nums[index] // 将对应位置的值变为负数
-      }
-    }
-        // 找到所有未标记的索引
-    for(let i=0;i<nums.length;i++ ){
-      if(nums[i]>0){
-        res.push(i+1)// 未标记的位置即为缺失的数字
-      }
-    }
-    return res
+  // function findDisappearedNumbers(nums) {
+  //   let res=[]
+  //    // 标记数组中出现的数字(设为负数)
+  //   for(let item of nums){
+  //     let index=Math.abs(item)-1// 获取索引
+  //     if(nums[index]>0){
+  //       nums[index]= -nums[index] // 将对应位置的值变为负数
+  //     }
+  //   }
+  //       // 找到所有未标记的索引
+  //   for(let i=0;i<nums.length;i++ ){
+  //     if(nums[i]>0){
+  //       res.push(i+1)// 未标记的位置即为缺失的数字
+  //     }
+  //   }
+  //   return res
 
+  // }
+     // ----------------------------------00561. Array Partition---------------------------------- 
+  //Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2), ..., (an, bn) 
+  //such that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.
+//     Input: nums = [1, 4, 3, 2]
+//     Output: 4
+//     Explanation: All possible pairings(ignoring the ordering of elements) are:
+//     1.(1, 4), (2, 3) -> min(1, 4) + min(2, 3) = 1 + 2 = 3
+//     2.(1, 3), (2, 4) -> min(1, 3) + min(2, 4) = 1 + 2 = 3
+//     3.(1, 2), (3, 4) -> min(1, 2) + min(3, 4) = 1 + 3 = 4 只有这重non-decrease的排列方式才能得到最大的min
+// So the maximum possible sum is 4.
 
-    
+  //这一题主要是理解问题，要取得每pair的最小值，但是又要sum最大，
+  //唯一的方法就是将其从小到大排列，这样就可以保证每个pair中的最小值最大
 
-
-  }
-  
-  
+  // function arrayPairSum (nums) {
+      
+  //     let sorted = nums.sort((a, b) => a - b)
+  //     let res = 0
+  //     for (let i = 0; i < sorted.length - 1; i += 2) {
+  //       res += sorted[i]
+  //     }
+  //     return res
+  //   };
   </script>
 
 </body>
