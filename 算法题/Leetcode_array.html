@@ -513,9 +513,45 @@
 
 
         // };
+//---------------628. Maximum Product of Three Numbers---------------
+//Given an integer array nums, find three numbers whose product is maximum and return the maximum product.
+ //这道题就是求一个array中哪三个数相乘得到最大值
+ //主要明确，有两种情况，一种是全部为正整数，一种就是存在负数的情况
+ //所以先对array进行从小到大的排序，然后对最大的正整数相乘，然后再对前两个负数相乘，得到的正数和最后的一项正数相乘，比较两个数的大小，取最大的那个
+// function  maximumProduct (nums) {
+//     let leng = nums.length
+//     let sorted = nums.sort((a, b) => a - b)
+//     pro1 = sorted[leng - 1] * sorted[leng - 2] * sorted[leng - 3]
+//     pro2 = sorted[0] * sorted[1] * sorted[leng - 1]
+//     return Math.max(pro1, pro2)
 
+//   };
 
-  </script>
+  //---------------643. Maximum Average Subarray I---------------
+  //You are given an integer array nums consisting of n elements, and an integer k.
+//Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.
+//Any answer with a calculation error less than 10 - 5 will be accepted.
+  // Input: nums = [1, 12, -5, -6, 50, 3], k = 4
+  // Output: 12.75000
+  // Explanation: Maximum average is(12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+  //其实这个问题用 滑动窗口算法。 滑动窗口只需计算第一个长度为 k 的子数组的和，之后每次移动窗口时，
+  //只需在前一个窗口和的基础上加上一个新元素，减去一个旧元素，从而将复杂度降低到 O(n)
+
+// function findMaxAverage (nums, k) {
+//     let sum = 0
+//     for (let i = 0; i < k; i++) {
+//       sum += nums[i]
+//     }
+//     let max = sum
+//     for (let j = k; j < nums.length; j++) {
+//       sum = sum - nums[j - k] + nums[j]
+//       max = Math.max(sum, max)
+//     }
+
+//     return max / k
+//   };
+
+ </script>
 
 </body>
 
