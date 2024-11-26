@@ -15,6 +15,9 @@
   
   
   <script>
+
+    //函数1: 初始化结果矩阵 O（m*n）
+    //  const res = Array.from({ length: rows }, () => Array(cols).fill(0));
    
 // ----------------------------------0001:Two Sum----------------------------------
 // 意思就是说要从一个array中找到"唯一"一对数字（a,b),a+b=target
@@ -550,6 +553,50 @@
 
 //     return max / k
 //   };
+
+  //---------------661. Image Smoother---------------
+  //An image smoother is a filter of the size 3 x 3 that can be applied to each cell
+  // of an image by rounding down the average of the cell and the eight surrounding cells 
+  //(i.e., the average of the nine cells in the blue smoother). If one or more of the surrounding 
+  //cells of a cell is not present, we do not consider it in the average (i.e., the average of the four cells in the red smoother).
+  //Given an m x n integer matrix img representing the grayscale of an image, return the image after applying the smoother on each cell of it.
+  //这道题其实就是要理解固定的 3 x 3的方格中所有存在的item的平均值放入原来的item中，组成一个新的array，
+  //所以解决方法就是loop这个matrix array，对每个item进行判定周边的3 x 3方格所包含的items
+  // function imageSmoother  (img) {
+  //   const rows = img.length;       // 矩阵的行数
+  //   const cols = img[0].length;    // 矩阵的列数
+
+  //   // 初始化结果矩阵 O（m*n）
+  //   const res = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+  //   // 遍历矩阵的每个单元格
+  //   for (let y = 0; y < rows; y++) {
+  //     for (let x = 0; x < cols; x++) {
+  //       let sum = 0;         // 邻居值的和
+  //       let count = 0;       // 有效邻居的数量
+
+  //       // 遍历 3×3 范围
+  //       for (let i = -1; i <= 1; i++) {
+  //         for (let j = -1; j <= 1; j++) {
+  //           const newY = y + i;
+  //           const newX = x + j;
+
+  //           // 检查边界条件
+  //           if (newY >= 0 && newY < rows && newX >= 0 && newX < cols) {
+  //             sum += img[newY][newX];
+  //             count++;
+  //           }
+  //         }
+  //       }
+
+  //       // 计算平均值并向下取整
+  //       res[y][x] = Math.floor(sum / count);
+  //     }
+  //   }
+
+  //   return res;
+
+  // };
 
  </script>
 
