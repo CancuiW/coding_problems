@@ -678,6 +678,65 @@
 
   // };
 
+  //-----------------724. Find Pivot Index----------------------
+  //Given an array of integers nums, calculate the pivot index of this array.
+//The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+//If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left.This also applies to the right edge of the array.
+//Return the leftmost pivot index.If no such index exists, return -1.
+ //就是找到一个item，item左边的sum 和右边的sum 相等，return item的index
+  //方法1:
+  // function  pivotIndex(nums) {
+
+
+  //     for (let i = 0; i < nums.length; i++) {
+  //       let left = 0
+  //       for (let l = 0; l < i; l++) {
+  //         left += nums[l]
+  //       }
+  //       let right = 0
+  //       for (let j = i + 1; j < nums.length; j++) {
+  //         right += nums[j]
+  //       }
+  //       if (left === right) {
+  //         return i
+  //       }
+
+  //     }
+  //     return -1
+
+  //   };
+  //   //方法2 这种方式更快
+  //   function pivotIndex(nums) {
+  //       if (nums.length <= 0) {
+  //         return -1;
+  //       }
+
+  //       let sum = 0, leftSum = 0;
+
+  //       // 计算数组总和
+  //       for (const num of nums) {
+  //         sum += num;
+  //       }
+
+  //       // 遍历数组，寻找枢轴索引
+  //       for (let index = 0; index < nums.length; index++) {
+  //         const num = nums[index];
+  //         if (leftSum * 2 + num === sum) {
+  //           return index; // 找到枢轴索引
+  //         }
+  //         leftSum += num;
+  //       }
+
+  //       return -1; // 未找到枢轴索引
+  //     }
+
+  //     // 示例用法
+  //     console.log(pivotIndex([1, 7, 3, 6, 5, 6])); // 输出: 3
+  //     console.log(pivotIndex([1, 2, 3]));          // 输出: -1
+  //     console.log(pivotIndex([2, 1, -1]));         // 输出: 0
+
+
+
  </script>
 
 </body>
