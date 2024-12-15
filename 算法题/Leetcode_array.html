@@ -776,17 +776,18 @@
 //A matrix is Toeplitz if every diagonal from top - left to bottom - right has the same elements
 //给出一个矩阵，要求判断矩阵所有对角斜线上的数字是否都是一个数字。
 //需要注意的是，会在长度的前一个结束loop，matrix[i + 1][j + 1])必须存在
-  function isToeplitzMatrix  (matrix) {
-  for (let i = 0; i < matrix.length - 1; i++) {
-      for (let j = 0; j < matrix[0].length - 1; j++) {
-        if (matrix[i][j] !== matrix[i + 1][j + 1]) {
-          return false
-        }
-      }
-    }
-    return true  
+  // function isToeplitzMatrix  (matrix) {
+  // for (let i = 0; i < matrix.length - 1; i++) {
+  //     for (let j = 0; j < matrix[0].length - 1; j++) {
+  //       if (matrix[i][j] !== matrix[i + 1][j + 1]) {
+  //         return false
+  //       }
+  //     }
+  //   }
+  //   return true  
 
-  };
+  // };
+  
  </script>
 
 </body>
