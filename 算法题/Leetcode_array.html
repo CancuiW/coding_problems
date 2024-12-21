@@ -808,7 +808,23 @@
 //   Output: []
 //   Explanation: We have groups "a", "b", and "c", none of which are large groups.
 
+  function largeGroupPositions(S) {
+    const res = [];
+    let end = 0;
 
+    while (end < S.length) {
+      const start = end;
+      const char = S[end];
+      while (end < S.length && S[end] === char) {
+        end++;
+      }
+      if (end - start >= 3) {
+        res.push([start, end - 1]);
+      }
+    }
+
+    return res;
+  }
  </script>
 
 </body>
