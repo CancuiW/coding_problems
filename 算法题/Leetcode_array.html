@@ -794,7 +794,7 @@
 //A group is identified by an interval[start, end], where start and end denote the start and end indices(inclusive) of the group.In the above example, "xxxx" has the interval[3, 6].
 //A group is considered large if it has 3 or more characters.
 //Return the intervals of every large group sorted in increasing order by start index.
-
+//相当于每次移动start，end index 的位置，当出现end-start >=3 的情况，那么就需要记录start，end index 的位置
 //Example 1:
 
   // Input: s = "abbxxxxzzy"
