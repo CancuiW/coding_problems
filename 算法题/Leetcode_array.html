@@ -832,7 +832,8 @@
   //  For example, flipping[1, 1, 0] horizontally results in [0, 1, 1].
   //  To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0.
   //  For example, inverting[0, 1, 1] results in [1, 0, 0].
-  
+  //解题思路 #
+  //  简单题。利用滑动窗口的思想，先扩大窗口的右边界，找到能相同字母且能到达的最右边。记录左右边界。再将窗口的左边界移动到上一次的右边界处。以此类推，重复扩大窗口的右边界，直至扫完整个字符串。最终所有满足题意的较大分组区间都在数组中了。
 //   func largeGroupPositions(S string)[][]int {
 //       res, end :=[][]int{ }, 0
 //       for end < len(S) {
