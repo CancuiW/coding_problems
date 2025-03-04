@@ -858,7 +858,43 @@
   //   return res;
   // }
 
+
+//双指针法（Two Pointers Technique）是一种常用的算法技巧，通常用于解决数组或链表相关的问题。它的核心思想是使用两个指针（或索引）在数据结构中同时移动，从而高效地解决问题。
   
+//1.解决问题：翻转数组
+  // 输入：nums = [1, 2, 3, 4, 5]
+  // 输出：[5, 4, 3, 2, 1]
+
+// function reverseArray(nums) {
+//       let left = 0;
+//       let right = nums.length - 1;
+
+//       while (left < right) {
+//         [nums[left], nums[right]] = [nums[right], nums[left]]; // 交换元素
+//         left++;
+//         right--;
+//       }
+
+//       return nums;
+//     }
+
+//2.移除有序数组中的重复项--问题描述：移除有序数组中的重复项，并返回新数组的长度。
+  // 输入：nums = [1, 1, 2, 2, 3]
+  // 输出：3（新数组为[1, 2, 3]）
+  // function removeDuplicates(nums) {
+  //     if (nums.length === 0) return 0;
+
+  //     let slow = 0; // 慢指针
+  //     for (let fast = 1; fast < nums.length; fast++) { // 快指针
+  //       if (nums[fast] !== nums[slow]) {
+  //         slow++;
+  //         nums[slow] = nums[fast]; // 将不重复的元素移到前面
+  //       }
+  //     }
+
+  //     return slow + 1; // 返回新数组的长度
+  //   }
+
 
  </script>
 
