@@ -22,15 +22,77 @@
       //问题特点：数据已经排序，需要找到满足特定条件的两个元素。
       //示例：在有序数组中查找两个数，使它们的和等于目标值。
            //在链表中找到中间节点或倒数第 k 个节点。
+        //    输入：nums = [2, 7, 11, 15], target = 9
+        //    输出：[2, 7]
+        //    function twoSum(nums, target) {
+        //         let left = 0;
+        //         let right = nums.length - 1;
+        //         while (left < right) {
+        //             const sum = nums[left] + nums[right];
+        //             if (sum === target) {
+        //                 return [nums[left], nums[right]];
+        //             } else if (sum < target) {
+        //                 left++;
+        //             } else {
+        //                 right--;
+        //             }
+        //         }
+        //         return [];
+        //     }
+
     //（2）翻转或反转问题
       // 问题特点：需要翻转或反转数组、字符串或链表。
       // 示例：翻转数组或字符串；反转链表。
+        // 输入：nums = [1, 2, 3, 4, 5]
+        // 输出：[5, 4, 3, 2, 1]
+        // function reverseArray(nums) {
+        //         let left = 0;
+        //         let right = nums.length - 1;
+        //         while (left < right) {
+        //             [nums[left], nums[right]] = [nums[right], nums[left]];
+        //             left++;
+        //             right--;
+        //         }
+        //         return nums;
+        //     }
     // （3）滑动窗口问题
       //问题特点：需要在数组或字符串中找到满足条件的子数组或子字符串。
       //示例：找到和大于等于目标值的最短子数组；找到不包含重复字符的最长子字符串。
+    //   输入：nums = [2, 3, 1, 2, 4, 3], target = 7
+    //   输出：2（子数组[4, 3] 的和为 7）
+    //   function minSubArrayLen(nums, target) {
+    //         let left = 0;
+    //         let sum = 0;
+    //         let minLen = Infinity;
+    //         for (let right = 0; right < nums.length; right++) {
+    //             sum += nums[right];
+    //             while (sum >= target) {
+    //                 minLen = Math.min(minLen, right - left + 1);
+    //                 sum -= nums[left];
+    //                 left++;
+    //             }
+    //         }
+    //         return minLen === Infinity ? 0 : minLen;
+    //     }
+
     //（4）快慢指针问题
       //问题特点：需要检测链表中的环或找到链表的特定节点。
       //示例：检测链表是否有环；找到链表的中间节点。
+    //   输入：链表 1 -> 2 -> 3 -> 4 -> 2（形成环）
+    //   输出：true
+    //   function hasCycle(head) {
+    //         let slow = head;
+    //         let fast = head;
+    //         while (fast && fast.next) {
+    //             slow = slow.next;
+    //             fast = fast.next.next;
+    //             if (slow === fast) {
+    //                 return true;
+    //             }
+    //         }
+    //         return false;
+    //     }
+
 
     </script>
 
