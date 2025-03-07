@@ -93,6 +93,33 @@
     //         return false;
     //     }
 
+//2.二分搜索（Binary Search）：数据必须有序，通常用于在有序数组中查找目标值或者其位置
+
+//核心思想：（1）初始化两个指针：left 和 right，分别指向数组的起始和末尾。
+//        （2）计算中间位置 mid = (left + right) / 2。
+//        （3）比较 mid 处的值与目标值：
+                        //如果相等，返回结果。
+                        //如果目标值小于 mid 处的值，将 right 移动到 mid - 1。
+                        //如果目标值大于 mid 处的值，将 left 移动到 mid + 1。
+                        //重复上述步骤，直到 left > right。
+//O(log n)：每次将搜索范围缩小一半。
+    // function binarySearch(nums, target) {
+    //     let left = 0;
+    //     let right = nums.length - 1;
+
+    //     while (left <= right) {
+    //         const mid = Math.floor((left + right) / 2);
+    //         if (nums[mid] === target) {
+    //             return mid; // 找到目标值，返回索引
+    //         } else if (nums[mid] < target) {
+    //             left = mid + 1;
+    //         } else {
+    //             right = mid - 1;
+    //         }
+    //     }
+
+    //     return -1; // 未找到目标值
+    // }
 
     </script>
 
