@@ -382,6 +382,7 @@
 // The third distinct maximum is 1.
 // O(n) time complexity
 // -Infinity 初始值最小的情况
+
   // function thirdMax (nums) {
   //   let a = -Infinity, b = -Infinity, c = -Infinity 
   //   for (let item of nums) {
@@ -472,10 +473,11 @@
       //Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, 
       //and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no - adjacent - flowers rule
       // and false otherwise.
-      //意思就是说看到0的两边都是0，那么就可以插一个🌹，
+      //意思就是说看到0的两边都是0，那么就可以插一个🌹，也就是说找到三个0一起的情况下将中间的一个0变成1
       //Input: flowerbed = [1,0,0,0,1], n = 2
        // Output: false
 //方法1:
+
        // function canPlaceFlowers (flowerbed, n) {
         //     if (flowerbed.length===1&&flowerbed[0]===0&&n===1) return true
         //     let count=0
@@ -504,6 +506,7 @@
         //     return count>=n
         // };
 //方法2:也没引入新的变量进行store，而且一个for loop也包含了【】两边的item的情况
+//flowerbed[i - 1] !== 1考虑到i=0的情况下，flowerbed[ - 1]undefined的时候--->flowerbed[- 1] !== 1是true
 
         //  function canPlaceFlowers(flowerbed, n) {
         //   for (let i = 0; i < flowerbed.length; i++) {

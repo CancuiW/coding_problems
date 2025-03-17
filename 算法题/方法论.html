@@ -55,7 +55,7 @@
         //         }
         //         return nums;
         //     }
-    // （3）滑动窗口问题
+    // （3）滑动窗口问题（相似题型 643--Maximum Average Subarray I）
       //问题特点：需要在数组或字符串中找到满足条件的子数组或子字符串。
       //示例：找到和大于等于目标值的最短子数组；找到不包含重复字符的最长子字符串。
     //   输入：nums = [2, 3, 1, 2, 4, 3], target = 7
@@ -209,7 +209,7 @@
 //         let preRow=triangle[i-1]
 //         let curRow=[]
 //         curRow.push(1)
-//         for(let j=1;j<preRpw.length;j++){
+//         for(let j=1;j<preRow.length;j++){
 //             curRow[j]=preRow[j]+preRow[j-1]
 
 //         }
@@ -222,12 +222,6 @@
 
 // }
 
-    function generate(numRows) {
-        if (numbRow === 0) return [1]
-        if (numbRow === 1) return [[1]]
-
-
-    }
 
 
     </script>
