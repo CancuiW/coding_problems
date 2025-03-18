@@ -222,7 +222,50 @@
 
 // }
 
+//5.Map的储存和应用 
+//let map=new Map()
+//functions: map.set(key,values)  
+//           map.has(key)---true/false
+//           map.get(key)---values([a,b,c])
+//           map.delete(key)
+//--------------------697. Degree of an Array-----------------------
+    //Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum frequency of any one of its elements.
+    //Your task is to find the smallest possible length of a(contiguous) subarray of nums, that has the same degree as nums.
+    //先找出最频繁出现的number，然后找出最短的含有这个重复number的subarray
+    // Input: nums = [1, 2, 2, 3, 1, 4, 2]
+    // Output: 6
+    // Explanation:
+    // The degree is 3 because the element 2 is repeated 3 times.
+    //   So[2, 2, 3, 1, 4, 2] is the shortest subarray, therefore returning 6.
+    //这道题主要是结合了Map()和解构赋值语法(destructuring assignment)的用法
+    //通过创建一个map,里面包含很多的key-value pairs，value=[count,startIndex,endIndex]
+    //最后再找到map中count最大的value，得到最短的subarray
+    // function findShortestSubArray(nums) {
+    //   let map = new Map()
+    //   let freq = 0
+    //   let smallest = nums.length
 
+    //   for (let i = 0; i < nums.length; i++) {
+    //     let num = nums[i]
+    //     if (!map.has(num)) {
+    //       map.set(num, [1, i, i])
+    //     } else {
+    //       let [count, start, _] = map.get(num)
+    //       map.set(num, [count + 1, start, i])
+    //     }
+    //     freq = Math.max(freq, map.get(num)[0])
+
+    //   }
+    //   for (let [_, values] of map) {
+    //     let [c, s, e] = values
+    //     if (c === freq) {
+    //       smallest = Math.min(smallest, e - s + 1)
+
+    //     }
+    //   }
+    //   return smallest
+
+    // };
 
     </script>
 
