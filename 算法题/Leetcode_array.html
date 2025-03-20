@@ -750,6 +750,7 @@
   // Output: 15
   // Explanation: You will start at index 1. - Pay 15 and climb two steps to reach the top.
   // The total cost is 15.
+  //https://www.youtube.com/watch?v=ktmzAZWkEZ0&t=1s
 //这道题和70题很像,都是关于爬楼的问题
 // function  minCostClimbingStairs (cost) {
 //       cost.push(0)
@@ -765,6 +766,7 @@
 //Input: n = 3
 //Output: 3
 //Explanation: There are three ways to climb to the top.
+//这一题的意思就是从后往前进行计算，发现每个位置上的ways是前两个上面位置的和（a+b），所以可以确定好loop的次数进行从后往前相加
 //1. 1 step + 1 step + 1 step
 //2. 1 step + 2 steps
 //3. 2 steps + 1 step
