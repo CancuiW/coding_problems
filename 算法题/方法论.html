@@ -93,6 +93,29 @@
     //         return false;
     //     }
 
+    //（5）移除有序数组中的重复项--问题描述：移除有序数组中的重复项，并返回新数组的长度。
+      // 输入：nums = [1, 1, 2, 2, 3]
+      // 输出：3（新数组为[1, 2, 3]）
+      // function removeDuplicates(nums) {
+      //     if (nums.length === 0) return 0;
+
+      //     let slow = 0; // 慢指针
+      //     for (let fast = 1; fast < nums.length; fast++) { // 快指针
+      //       if (nums[fast] !== nums[slow]) {
+      //         slow++;
+      //         nums[slow] = nums[fast]; // 将不重复的元素移到前面
+      //       }
+      //     }
+
+      //     return slow + 1; // 返回新数组的长度
+      //   }
+
+      //（6）830. Positions of Large Groups，也是重复项目的处理问题
+      // Input: s = "abbxxxxzzy"
+        // Output: [[3, 6]]
+      //返回连续重复超过3个点子集
+
+
 //2.二分搜索（Binary Search）：数据必须有序，通常用于在有序数组中查找目标值或者其位置
 
 //核心思想：（1）初始化两个指针：left 和 right，分别指向数组的起始和末尾。
@@ -264,6 +287,92 @@
     //     }
     //   }
     //   return smallest
+
+    // };
+
+
+//6 .Matrix的复杂问题
+
+  //-----------------------766. Toeplitz Matrix-----------------
+  //Given an m x n matrix, return true if the matrix is Toeplitz. Otherwise, return false.
+  //A matrix is Toeplitz if every diagonal from top - left to bottom - right has the same elements
+  //给出一个矩阵，要求判断矩阵所有对角斜线上的数字是否都是一个数字。
+  //需要注意的是，会在长度的前一个结束loop，matrix[i + 1][j + 1])必须存在
+  // function isToeplitzMatrix  (matrix) {
+  // for (let i = 0; i < matrix.length - 1; i++) {
+  //     for (let j = 0; j < matrix[0].length - 1; j++) {
+  //       if (matrix[i][j] !== matrix[i + 1][j + 1]) {
+  //         return false
+  //       }
+  //     }
+  //   }
+  //   return true
+
+  // };
+
+  //-------------------- 867. Transpose Matrix----------------------------
+      // Given a 2D integer array matrix, return the transpose of matrix.
+      //   Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+      // Output: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+      //思路就是建造一个新的array，然后再将以前的matrix中的数字放进去
+      // var transpose = function (matrix) {
+      //   let row = matrix.length//2
+      //   let col = matrix[0].length//3
+      //   let arr = new Array(col)//[,,]
+      //   for (let i = 0; i < col; i++) {
+      //     arr[i] = new Array(row)
+      //   }
+      //   for (let i = 0; i < row; i++) {
+      //     for (let j = 0; j < col; j++) {
+      //       arr[j][i] = matrix[i][j]
+      //     }
+      //   }
+      //   return arr
+
+      // };
+
+
+  //---------------661. Image Smoother---------------
+    //An image smoother is a filter of the size 3 x 3 that can be applied to each cell
+    // of an image by rounding down the average of the cell and the eight surrounding cells
+    //(i.e., the average of the nine cells in the blue smoother). If one or more of the surrounding
+    //cells of a cell is not present, we do not consider it in the average (i.e., the average of the four cells in the red smoother).
+    //Given an m x n integer matrix img representing the grayscale of an image, return the image after applying the smoother on each cell of it.
+    //这道题其实就是要理解固定的 3 x 3的方格中所有存在的item的平均值放入原来的item中，组成一个新的array，
+    //所以解决方法就是loop这个matrix array，对每个item进行判定周边的3 x 3方格所包含的items
+    // function imageSmoother  (img) {
+    //   const rows = img.length;       // 矩阵的行数
+    //   const cols = img[0].length;    // 矩阵的列数
+
+    //   // 初始化结果矩阵 O（m*n）
+    //   const res = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+    //   // 遍历矩阵的每个单元格
+    //   for (let y = 0; y < rows; y++) {
+    //     for (let x = 0; x < cols; x++) {
+    //       let sum = 0;         // 邻居值的和
+    //       let count = 0;       // 有效邻居的数量
+
+    //       // 遍历 3×3 范围
+    //       for (let i = -1; i <= 1; i++) {
+    //         for (let j = -1; j <= 1; j++) {
+    //           const newY = y + i;
+    //           const newX = x + j;
+
+    //           // 检查边界条件
+    //           if (newY >= 0 && newY < rows && newX >= 0 && newX < cols) {
+    //             sum += img[newY][newX];
+    //             count++;
+    //           }
+    //         }
+    //       }
+
+    //       // 计算平均值并向下取整
+    //       res[y][x] = Math.floor(sum / count);
+    //     }
+    //   }
+
+    //   return res;
 
     // };
 
