@@ -16,22 +16,38 @@
 
 
     <script>
+        //--------------------13.Roman to Integer---------------------------------
         //"MCMXCIV"
-    // function romanToInt(s) {
-    //     let obj={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
-    //     let sum=0
-    //     for(let i=0;i<s.length;i++){
-    //         if(s[i]>s[i+1]){
-    //             sum+=s[i]
-    //         }else{
-    //             sum+=s[i+1]-s[i]
-    //             i++
+        //方法1:
+        //不需要检查 i+1 是否越界，因为从倒数第二个字符开始遍历。
+    //  function romanToInt(s) {
+     
+       
+    //         let obj = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
+    //         let res = obj[s[s.length - 1]]; // 直接初始化最后一个字符的值
+    //         for (let i = s.length - 2; i >= 0; i--) {
+    //             if (obj[s[i]] < obj[s[i + 1]]) {
+    //                 res -= obj[s[i]];
+    //             } else {
+    //                 res += obj[s[i]];
+    //             }
     //         }
+    //         return res;
+    //     };
 
-    //     }
-
-
-    // }
+        // 方法二：
+        // var romanToInt = function(s) {
+        //     let obj = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000};
+        //     let res = 0;
+        //     for (let i = 0; i < s.length; i++) {
+        //         if (i < s.length - 1 && obj[s[i]] < obj[s[i+1]]) {
+        //             res -= obj[s[i]];
+        //         } else {
+        //             res += obj[s[i]];
+        //         }
+        //     }
+        //     return res;
+        // };
 
    </script>
 
