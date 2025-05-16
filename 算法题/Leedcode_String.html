@@ -49,6 +49,21 @@
         //     return res;
         // };
 
+// --------------1071. Greatest Common Divisor of Strings-----------------
+//Input: str1 = "ABCABC", str2 = "ABC"
+ // Output: "ABC"
+ //验证两个string是否是含有共同的重复项，并return这个重复项
+ //也就是变相的在找 --最大公约数GCD(Greatest common divisor)
+ //记住这个简短的公式，可以快速算出GCD
+     const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
+    var gcdOfStrings = function (str1, str2) {
+        if (str1 + str2 !== str2 + str1) return ""
+        let leng = gcd(str1.length, str2.length)
+        return str1.substring(0, leng)
+
+    };
+
+
    </script>
 
 </body>
