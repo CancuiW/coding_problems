@@ -55,14 +55,32 @@
  //验证两个string是否是含有共同的重复项，并return这个重复项
  //也就是变相的在找 --最大公约数GCD(Greatest common divisor)
  //记住这个简短的公式，可以快速算出GCD
-     const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
-    var gcdOfStrings = function (str1, str2) {
-        if (str1 + str2 !== str2 + str1) return ""
-        let leng = gcd(str1.length, str2.length)
-        return str1.substring(0, leng)
+    //  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
+    // var gcdOfStrings = function (str1, str2) {
+    //     if (str1 + str2 !== str2 + str1) return ""
+    //     let leng = gcd(str1.length, str2.length)
+    //     return str1.substring(0, leng)
 
-    };
+    // };
 
+//-----151. Reverse Words in a String--------------
+//Input: s = "  hello world  "
+//利用了正则表达式（regular expression）去除String中所有的空格
+//利用了 String.trim()函数来去除String头尾的空格
+//    Output: "world hello"
+ //   Explanation: Your reversed string should not contain leading or trailing spaces.
+    // var reverseWords = function (s) {
+    //     let arr = s.trim().split(/\s+/)
+
+    //     let left = 0, right = arr.length - 1
+    //     while (left < right) {
+    //         [arr[left], arr[right]] = [arr[right], arr[left]]
+    //         left++;
+    //         right--;
+    //     }
+    //     return arr.join(' ')
+
+    // };
 
    </script>
 
