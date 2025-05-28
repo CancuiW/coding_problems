@@ -63,6 +63,7 @@
   //   return str
 
   //  }
+  
   //  function solution(arr){
   //   let arr2=arr.map(x=>change(x))
   //   let count=0
@@ -81,6 +82,34 @@
   //  a = [25, 35, 872, 228, 53, 278, 872]
   //  console.log(solution(a))
   
+//方法3 利用hash map
+  // 时间复杂度：O(n * d log d)（d 为数字位数）。
+
+  // 空间复杂度：O(n)（由 Map 决定）。
+
+  // 关键公式：m * (m - 1) / 2 计算相同数字构成的数对数量（组合数）。
+
+let b= [25, 35, 872, 228, 53, 278, 872]
+function solution (a){
+  let hash=new Map()
+  for(let i of a){
+    let item=i.toString().split('').sort((a,b)=>a-b).join('')
+    hash.set(item,(hash.get(item)||0)+1)
+  }
+  let count=0
+  for(let m of hash.values()){
+    if(m>=2){
+      count+=m*(m-1)/2
+    }
+  }
+  return count
+
+
+
+}
+console.log(solution(b))
+
+
 
 
   //练习2
