@@ -29,6 +29,7 @@
 //   a[2] = 872 and a[5] = 278(i = 2 and j = 5),
 //   a[2] = 872 and a[6] = 872(i = 2 and j = 6),
 //   a[5] = 278 and a[6] = 872(i = 5 and j = 6
+
 //思路：1，对array中的每个item进行验证，因为item中每个数字的顺序可以不一致，所以为了方便比较，就将item中的数字升序排列
 //如果经过升序排列的item相同，说明找到了一对
 //2，因为array中的原始item都是number，所以为了能将其中的数字（25）单独拿出来，必须用toString()method进行变换成字符串
@@ -89,25 +90,25 @@
 
   // 关键公式：m * (m - 1) / 2 计算相同数字构成的数对数量（组合数）。
 
-let b= [25, 35, 872, 228, 53, 278, 872]
-function solution (a){
-  let hash=new Map()
-  for(let i of a){
-    let item=i.toString().split('').sort((a,b)=>a-b).join('')
-    hash.set(item,(hash.get(item)||0)+1)
-  }
-  let count=0
-  for(let m of hash.values()){
-    if(m>=2){
-      count+=m*(m-1)/2
-    }
-  }
-  return count
+// let b= [25, 35, 872, 228, 53, 278, 872]
+// function solution (a){
+//   let hash=new Map()
+//   for(let i of a){
+//     let item=i.toString().split('').sort((a,b)=>a-b).join('')
+//     hash.set(item,(hash.get(item)||0)+1)
+//   }
+//   let count=0
+//   for(let m of hash.values()){
+//     if(m>=2){
+//       count+=m*(m-1)/2
+//     }
+//   }
+//   return count
 
 
 
-}
-console.log(solution(b))
+// }
+// console.log(solution(b))
 
 
 
@@ -144,105 +145,46 @@ console.log(solution(b))
 // By swapping the digits of numbers[2] = 30, the array becomes[13, 31, 3] which is not strictly increasing;
 //     So, it's not possible to obtain a strictly increasing array, and the answer is false.
 //
-//思路：
-//1，因为最开始需要验证一次是array中是否是升序排列，等改变操作完成后还需要验证一次，所以单独做一个验证升序的function
-//2，如何original array是升序，return true，如何不是，则找出最大值是多少，且在哪个位置（index）
-//也可以用for loop找到下一个比上一个小或者相等的值，，得到这个特殊值的value和index，带入change function
-//3，再将最大值进行单独的处理，将其变成array的形式后，对第一个数与最后一个互换，形成新的数字
-//再将新的数字替换original array中 同位置index的最大值
-//最后对新的array再次检测是否升序，如果仍旧不是，才能return false
-//注意：：如果要对array中的内容进行互换，则临时需要一个中间值medium来帮助储存数据
-// function increase(arr){
-//   for (let i=0;i<arr.length;i++){
-//     if(arr[i+1]<=arr[i]){
-//       return false
-//     } 
-//   }
-//   return true
-// }
+function solution(numbers){
+   const isIncreasing=(arr)=>{
+    for(let i=1;i<arr.length;i++){
+      if(arr[i]<=arr[i-1]){
+        return false
+      }
+    }
+     return true
+  }
+    if(isIncreasing(numbers)) return true
+    let key,index
 
+    for(let i=1;i<numbers.length;i++){
+      if(numbers[i-1]>=numbers[i]){
+        key=numbers[i-1].toString()
+        index=i-1
+        break
+      }
+    }
+   
+    for(let i=0;i<key.length-1;i++){
+        for (let j = i+1; j < key.length; j++) {
+        let item=key.split('')
+        let temp=item[i]
+        item[i]=item[j]
+        item[j]=temp
+        let newItem= parseInt(item.join(''))
+        let newNumbers=[...numbers]
+        newNumbers[index]=newItem
+        if (isIncreasing(newNumbers)) return true
+         
 
+      }
+    }
+    return false
 
-// function solution(numbers){
-//   if (increase(numbers)){
-//     return true
-//   }else{
-//     let maxValue=Math.max(...numbers)//Math.max（）只引导一串数字，不能是array （1，2，3，4）可以，【1，2，3，4】不行
-//     let indexOfMax=numbers.indexOf(maxValue)//找出index，为最后用splice（）进行调换做准备
-//     let arrayMax=maxValue.toString().split("")
+   }
 
-//     let first= arrayMax[0]//这三排是对array中第一和最后一位数进行互换
-//     arrayMax[0]= arrayMax[arrayMax.length - 1]
-//     arrayMax[arrayMax.length - 1]=first
+console.log(solution([13, 31, 30]))
 
-//     let change= arrayMax.join("")
-//       change=parseInt(change)//新的数字仍旧是string的形式，所以要转换成number形式
-//       numbers.splice(indexOfMax,1,change)
-//       if(increase(numbers)){
-//         return true
-//       }else{
-//         return false
-//       }
-
-    
-//   }
-
-// }
-
-// const a=solution([1000, 10, 100])
-// console.log(a)
-//方法2
-  // let numbers = [1, 2, 300, 3]
-  // function increase(arr) {
-  //   for (let i = 0; i < arr.length; i++) {
-  //     if (arr[i + 1] <= arr[i]) {
-  //       return false
-  //     }
-  //   }
-  //   return true
-
-
-  // }
-  //console.log(increase(numbers))
-  //
-
-  // function changeNum(num) {
-  //   const arr = num.toString().split("")
-  //   let medium = arr[0]
-  //   arr[0] = arr.at(-1)
-  //   arr[arr.length - 1] = medium
-  //   return parseInt(arr.join(""))
-
-  // }
-  // // console.log(changeNum(900))
-  // function solution(arr) {
-  //   if (increase(arr)) {
-  //     return true
-  //   } else {
-  //     for (let i = 0; i < arr.length; i++) {
-  //       if (arr[i + 1] <= arr[i]) {
-  //         let item = changeNum(arr[i])
-  //         arr.splice(i, 1, item)
-  //       }
-  //     }
-  //     if (increase(arr)) {
-  //       return true
-  //     } else {
-  //       return false
-  //     }
-
-  //   }
-  // }
-  // console.log(solution(numbers))
-  
-//以下测试数据
-//numbers: [1, 5, 10, 20] true 
-//numbers: [1, 3, 900, 10] true
-
-
-
-//num = ['hello', 'love', 'favorite']
-//'h e l l o'
 
 //练习3:
     //将array中的所有元素中的vowel（元音字母）大写
