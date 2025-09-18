@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+    //队列 first in first out 先进先出
+    //因为这是先进先出的队列结构，所以当先出去第一个item的时候，后面的顺序全都被要前移，所以储存形式就是用object最佳
+    class Queue{
+      #items={}
+      #count=0    //记录加进去了几个items
+      #lowCount=0  //记录删除哪个item（队伍最开始的item）
+
+      enqueue(data){           //这是加入item的function
+        this.#items[this.#count]=data
+        this.#count++          
+
+      }
+      dequeue(){                //删除队头（最开始）的item
+        if(this.isEmpty()){
+          return undefined
+        }
+        let res=this.#items[this.#lowCount]
+        delete this.#items[this.#lowCount]
+        this.#lowCount++
+        return res
+        
+      }
+      front(){                  //输出队头的item
+        if (this.isEmpty()) return undefined                
+        return this.#items[this.#lowCount]
+      }
+
+      isEmpty(){
+        return this.#count - this.#lowCount===0
+      }
+
+      size(){
+        return this.#count-this.#lowCount
+      }
+
+      clear(){
+        this.#items={}
+        this.#count = 0                        // 修正：重置计数器
+        this.#lowCount = 0
+      }
+
+      toString(){
+         if (this.isEmpty()) return ''
+        let str=''
+        for(let i=this.#lowCount;i<this.#count;i++){
+          str+=this.#items[i]
+        }
+        return str
+      }
+    }
+
+   // let queue=new Queue()
+  
+  //队列结构的运用-----------------击鼓传花  
+  //击鼓传花游戏规则：击打number次，最后一下在哪个item上，哪个就踢出，最终得到winner
+  //可以利用queue（队列）进行计算，不断将队头拿出放在队尾
+
+  // function game(arr,count){
+  //   let queue = new Queue()
+  //   for(let i=0;i<arr.length;i++){        //放入所有的item到队列中去
+  //     queue.enqueue(arr[i])
+  //   }
+
+  //   while(queue.size()>1){
+  //     for(let i=0;i<count;i++){
+  //       let item = queue.dequeue()
+  //       queue.enqueue(item)
+  //     }
+  //     queue.dequeue()
+      
+      
+  //   }
+  //   return queue.dequeue()
+
+
+
+  // }
+  
+  // console.log(game(['a', 'b', 'c', 'd'], 7))
+
+
+//队列结构的运用-----------------双端队列double-ended  
+
+//双端队列 (double-ended) 
+//意思就是这个class中，可以处理既能先进先出的item（queue的特性），也可以处理后进先出的item（stack的特性）
+
+  class DeQueue {
+    #items = {}
+    #count = 0    //记录加进去了几个items
+    #lowCount = 0  //记录删除哪个item（队伍最开始的item）
+
+    addBack(data) {           //这是加入item的function
+      this.#items[this.#count] = data
+      this.#count++
+
+    }
+    removeFront() {                //删除队头（最开始）的item
+      if (this.isEmpty()) {
+        return undefined
+      }
+      let res = this.#items[this.#lowCount]
+      delete this.#items[this.#lowCount]
+      this.#lowCount++
+      return res
+
+    }
+
+    addFront(data){
+      if(this.isEmpty()){
+        this.addBack(data)
+      }else{
+        if(this.#lowCount>0){
+           this.#lowCount--
+          this.#items[this.#lowCount] = data
+         
+        }else{
+          //lowCount=0的情况比较复杂，因为列表头加一个item，后面所有的item都会往后挪一个，所以应该将后面的所有item都移动后再在表头加入新的item
+          //这种方法性能不高，如果数据特别高的时候，不适用
+          for(let i=this.#count;i>0;i--){
+            this.#items[i]= this.#items[i-1]
+          }
+          this.#items[0]=data
+
+          this.#count++
+        }
+        
+      }
+
+    }
+
+
+    removeBack(){
+       if (this.isEmpty()) return undefined
+        this.#count--
+        let res= this.#items[this.#count]
+       delete this.#items[this.#count]
+       return res
+      
+
+    }
+
+
+    peekFront() {                  //输出队头的item
+      if (this.isEmpty()) return undefined
+      return this.#items[this.#lowCount]
+    }
+
+    peekBack(){
+       if (this.isEmpty()) return undefined
+      return this.#items[this.#count-1]
+
+    }
+
+
+
+    isEmpty() {
+      return this.#count - this.#lowCount === 0
+    }
+
+    size() {
+      return this.#count - this.#lowCount
+    }
+
+    clear() {
+      this.#items = {}
+      this.#count = 0                        // 修正：重置计数器
+      this.#lowCount = 0
+    }
+
+    toString() {
+      if (this.isEmpty()) return ''
+      let str = ''
+      for (let i = this.#lowCount; i < this.#count; i++) {
+        str += this.#items[i]
+      }
+      return str
+    }
+  }
+  //let dequeue=new DeQueue()
+
+
+
+
+  //双端队列的运用------回文检查：前后读都一样
+  //用双端队列解决回文的好处就是，同时删除队列的前后两端，并进行对比，直到队列中size>1时截止
+
+  function test(str){
+    let newStr=str.toLowerCase().split(' ').join('')
+    let dequeue = new DeQueue()
+    for(let i=0;i<newStr.length;i++){
+      dequeue.addBack(newStr[i])
+    }
+    
+    while(dequeue.size()>1){
+      if(dequeue.removeFront()!==dequeue.removeBack()){
+        
+        return false
+       
+      }
+    }
+    return true
+
+
+
+  }
+  console.log(test('w qq    W'))
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Web App</title>
+    <style>
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        //双向链表：除了储存数据以外，还有两个指针分别指向前一个节点地址（prev)和下一个节点地址（next)
+        
+
+        class Node {
+
+            constructor(element) {
+                this.element = element;
+                this.next = null;
+            }
+        }
+
+
+        class LinkedList {
+
+            constructor(element) {
+                this.count = 0
+                this.head = null
+
+            }
+
+            push(element) {
+                let node = new Node(element)
+
+                if (this.head === null) {
+                    this.head = node
+
+                } else {
+                    let current = this.head     //这个新的变量是为了保护链表的原始head不受改变，但是指针指向最后的node
+                    while (current.next !== null) {
+                        current = current.next
+                    }
+                    current.next = node
+                }
+                this.count++
+
+            }
+            // 找到需要位置的node（从head开始往后找）
+            getNodeAt(index) {
+                if (index >= 0 && index < this.count) {
+                    let node = this.head
+                    for (let i = 0; i < index; i++) {
+                        node = node.next
+                    }
+                    return node
+                }
+
+                return
+            }
+
+            //指定位置删除(0,1,2位置)
+            removeAt(index) {
+                if (index >= 0 && index < this.count) {
+                    let current = this.head
+                    if (index === 0) {
+                        this.head = this.head.next
+                    } else {
+                        let previous = this.getNodeAt(index - 1)
+                        current = previous.next
+                        previous.next = current.next
+
+                    }
+                    this.count--
+
+                    return current.element
+                }
+                return                       //这里不定义直接返回 undefined
+            }
+
+
+            indexOf(el) {
+
+                let current = this.head
+                for (let i = 0; i < this.count; i++) {
+                    if (JSON.stringify(current.element) === JSON.stringify(el)) {            //先将对象(obj)转换为字符串，然后比较字符串.这是为了避免node中储存object类型的数据，因为object类型的数据无法比较
+                        return i
+                    }
+                    current = current.next
+
+                }
+                return -1
+            }
+            //删除给出的值
+            remove(element) {
+                let index = this.indexOf(element)
+                return this.removeAt(index)
+
+
+            }
+
+            insert(element, index) {
+                if (index >= 0 && index <= this.count) {   //注意这个index<=this.count中的🟰，表面插入在空集合里面的一个数
+                    const node = new Node(element)
+                    if (index === 0) {
+                        let current = this.head
+                        node.next = current
+                        this.head = node
+                    } else {
+                        let previous = this.getNodeAt(index - 1)
+                        let current = previous.next
+                        previous.next = node
+                        node.next = current
+                    }
+                    this.count++
+                    return true
+                }
+                return false
+            }
+
+           
+
+            isEmpty() {
+                return this.size() === 0
+            }
+            size() {
+                return this.count
+            }
+
+
+
+
+        }
+        let newList = new LinkedList()
+
+        // 链表的运用------回文检查：前后读都一样
+
+        function test(str) {
+            let newStr = str.toLowerCase().split(' ').join('')
+            let dequeue = new LinkedList()
+            for (let i = 0; i < newStr.length; i++) {
+                dequeue.push(newStr[i])
+            }
+
+            while (dequeue.size() > 1) {
+                if (dequeue.removeAt(0) !== dequeue.removeAt(dequeue.size() - 1)) {
+
+                    return false
+
+                }
+            }
+            return true
+
+
+
+        }
+      //  console.log(test('w qq    W'))
+
+
+
+
+    </script>
+    <script>
+        //这是一个双向链表节点的类定义，继承了普通的单向链表节点
+           class DoublyNode extends Node{
+            constructor(element){
+                super(element) //调用父类的node 
+                this.prev=null //新增：指向前一个节点的指针
+            }
+           }
+
+           class DoublyLinkedList extends LinkedList{
+            
+            constructor(){
+                 super()
+                 this.tail=null
+
+            }
+
+            push(element){
+                let node=new DoublyNode(element)
+                if(this.head===null){
+                    this.head=node
+                    this.tail=node 
+                }else{
+                    this.tail.next=node
+                    node.prev= this.tail
+                    this.tail=node 
+
+
+                }
+                this.count++
+
+            }
+            insert(element,index){
+                if(index>=0&&index<=this.count){
+                    let node=new DoublyNode(element)
+                    let current=this.head
+                    if(index===0){
+                        if(this.head===null){
+                            this.head=node
+                            this.tail=node
+
+                        }else{
+                            node.next=this.head
+                            this.head.prev=node
+                            this.head=node
+                        }
+                    }else if(index===this.count){
+                        this.tail.next=node
+                        node.prev=this.tail
+                        this.tail=node
+
+                       
+
+
+                    }else{
+                        let previous=this.getNodeAt(index-1)
+                        current=previous.next
+
+                        previous.next = node
+                        node.prev=previous
+                        node.next=current
+                        current.prev=node
+                        
+
+                    }
+                    this.count++
+                    return true
+                }
+                return false
+            }
+
+            removeAt(index){
+                if(index>=0&&index<this.count){
+                    let current=this.head
+                    if(index===0){
+                        this.head=current.next
+                        if(this.count===1){
+                            this.tail=null
+
+                        }else{
+                            this.head.prev=undefined
+                        }
+                        this.head=this.head.next
+
+                    }else if(index===this.count-1){
+                        current=this.tail
+                        this.tail=current.prev
+                        this.tail.next=null
+                    }else{
+                        let previous=this.getNodeAt(index-1)
+                        current= previous.next
+                        previous.next=current.next
+                        current.next.prev= previous
+
+                    }
+
+                 this.count--
+                 return current.element
+                }
+
+            }
+
+
+
+
+
+
+
+            getHead(){
+                return this.head
+
+            }
+            getTail(){
+                return this.tail
+
+            }
+           }
+
+           let list= new DoublyLinkedList()
+    </script>
+
+</body>
+
+</html>
