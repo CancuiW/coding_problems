@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Web App</title>
+    <style>
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        let setA=new Set([1,2,3])
+        let setB = new Set([2, 3, 4])
+        //交集
+        //let myset=new Set([...setA,...setB])
+        //并集
+        //let myset =new Set([...setA].filter(item=>setB.has(item)))
+        //差级
+        //let myset =new Set([...setB].filter(item=>!setA.has(item)))
+
+
+
+//封装字典
+        class Dictionary{
+           table={}
+
+
+          //将传入的Key值转换成String的形式进行保存
+           toStrFn(item){
+            if(item===null) {
+                return "NULL"
+
+           }else if(item===undefined){
+            return "UNDEFINED"
+           }else if(typeof item==='string'|| item instanceof String){
+            return item
+           }
+
+           return JSON.stringify(item)
+
+           }
+
+
+           hasKey(key){
+            return this.table[this.toStrFn(key)]!=null //不判断类型，所以 ！=
+
+           }
+           set(key,value){
+            if(key!=null && value!=null){
+                const tablekey=this.toStrFn(key)
+                this.table[tablekey]= new ValuePair(key,value)//这种方式是为了保证Key的精准度，因为之前转换成字符串了，所以现在以value的形式储存，保证其本身的type
+                return true
+            }
+            return false
+
+           }
+
+
+           get(key){
+            const valuepair=this.table[this.toStrFn(key)]
+            return valuepair==null?undefined:valuepair.value
+
+           }
+
+           remove(key){
+            if(this.hasKey(key)){
+                delete this.table[this.toStrFn(key)]
+                return true
+            }
+            return false
+           }
+           keys(){
+            return this.keyValues().map(item=>item.key)
+           }
+           values(){
+            return this.keyValues().map(item => item.value)
+           }
+
+           keyValues(){
+            return Object.values(this.table)
+           }
+
+           size(){
+            return Object.keys(this.table).length
+
+           }
+           isEmpty(){
+            return this.size()===0
+
+           }
+           clear(){
+            this.table={}
+
+           }
+           forEach(cb){
+            const valuePair=this.keyValues()
+            for(let i=0;i<valuePair.length;i++){
+                cb(valuePair[i].key,valuePair[i].value)
+                
+            }
+           }
+
+        }
+
+        class ValuePair{
+            constructor(key,value){
+                this.key=key
+                this.value=value
+            }
+        }
+
+        let myMap=new Dictionary()
+
+        myMap.set('name','can')
+        myMap.set('age',20)
+        myMap.forEach((key,value)=>console.log(key,value))
+
+    </script>
+
+</body>
+
+</html>
