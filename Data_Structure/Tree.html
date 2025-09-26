@@ -15,7 +15,113 @@
   
   
   <script>
-  
+  //Tree 是一种分层数据的抽象模型
+  //二叉树中的节点只有两个子节点，左侧和右侧
+  //二叉搜索树（BST）Binary Search Tree  只允许你在左侧储存比父节点小，右节点比父节点大
+
+  //封装
+
+  class Node{
+    constructor(key){
+      this.key=key
+      this.left=null
+      this.right=null
+    }
+
+  }
+
+  class BST{
+    constructor(){
+      this.root=null
+    }
+
+  //插入node
+    insert(key){
+      if(this.root==null){
+        this.root=new Node(key)
+      }else {
+        this.insertNode(this.root,key)
+      }
+
+    }
+    compareFn(a,b){
+      if(a===b){
+        return 0
+      }else if(a>b){
+        return 1
+      }else{
+        return -1
+      }
+    }
+
+    //比较两个数的大小
+    insertNode(node,key){
+      if(this.compareFn(key,node.key)===-1){
+        if(node.left==null){
+          node.left=new Node(key)
+        }else{
+          this.insertNode(node.left, key)
+
+        }
+
+        
+      }else{
+        if (node.right== null) {
+          node.right = new Node(key)
+        }else{
+          this.insertNode(node.right, key)
+        }
+       
+      }
+    }
+    //遍历
+    //中序遍历（从小到大排列 node）
+   
+    inOrderMap(callback){
+      this.inOrderMapNode(this.root,callback)
+
+    }
+
+    inOrderMapNode(node,callback){
+      if(node!=null){
+        this.inOrderMapNode(node.left,callback)
+        callback(node.key)
+        this.inOrderMapNode(node.right,callback)
+      }
+
+    }
+//先序遍历
+    preOrderMap(callback) {
+      this.preOrderMapNode(this.root, callback)
+
+    }
+
+    preOrderMapNode(node, callback) {
+      if (node != null) {
+
+        callback(node.key)
+        this.preOrderMapNode(node.left, callback)
+        this.preOrderMapNode(node.right, callback)
+      }
+
+    }
+
+
+
+
+  }
+
+  let  mytree=new BST()
+  mytree.insert(100)
+   mytree.insert(80)
+    mytree.insert(70)
+     mytree.insert(90)
+      mytree.insert(110)
+  mytree.preOrderMap((value)=>{
+    console.log(value)
+  })
+
+
   
 
 

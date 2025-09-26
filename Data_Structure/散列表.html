@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Web App</title>
+    <style>
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        //HashMap 类，它是Dictionary类的一种散列表实现方式，散列算法的作用是尽可能快地在数据结构中找到一恶搞值
+//这种形式最重要的是提高储存效率，它把所有的key值转换成一个常量，这种常量被转换完成之后不会因为你的数据增多而导致在查询的时候速度变慢
+        //
+        class HashTable {
+            table = {}
+
+
+            //将传入的Key值转换成String的形式进行保存
+            toStrFn(item) {
+                if (item === null) {
+                    return "NULL"
+
+                } else if (item === undefined) {
+                    return "UNDEFINED"
+                } else if (typeof item === 'string' || item instanceof String) {
+                    return item
+                }
+
+                return JSON.stringify(item)
+
+            }
+
+          //推崇的散列函数算法，得到唯一的代码（hash code)
+            hashCode(key){
+               const tableKey=this.toStrFn(key)
+               let hash=5381
+               for(let i=0;i<tableKey.length;i++){
+                hash=(hash*33)+tableKey.charCodeAt(i)
+               }
+               return hash%1013
+
+
+            }
+
+            set(key,value){
+                if(key!=null&&value!=null){
+
+                    const position=this.hashCode(key)
+                    this.table[position]=new ValuePair(key,value)
+
+                    return true
+                }
+                return false
+            }
+
+            get(key){
+                const valuepari=this.table[this.hashCode(key)]
+                return valuepari==null?undefined:valuepari.value
+            }
+
+            remove(key){
+                const hash=this.hashCode(key)
+                const valuepair=this.table[hash]
+                if(valuepair!=null){
+                    delete this.table[hash]
+                    return true
+                }
+                return false
+            }
+
+
+            
+
+        }
+
+        class ValuePair {
+            constructor(key, value) {
+                this.key = key
+                this.value = value
+            }
+        }
+
+        let myMap = new HashTable()
+        myMap.set("name", "cancui")
+        myMap.set({ 1: 2 }, "sophia")
+
+       
+
+    </script>
+
+</body>
+
+</html>
