@@ -77,7 +77,7 @@
     //遍历
     //中序遍历（从小到大排列 node）
    
-    inOrderMap(callback){
+    inOrderMap(callback){                          //callback 是可控的回调函数
       this.inOrderMapNode(this.root,callback)
 
     }
@@ -106,20 +106,135 @@
 
     }
 
+    //后序遍历
+    postOrderMap(callback) {
+      this.postOrderMapNode(this.root, callback)
+
+    }
+
+    postOrderMapNode(node, callback) {
+      if (node != null) {
+       
+        
+        this.postOrderMapNode(node.left, callback)
+         this.postOrderMapNode(node.right, callback)
+         callback(node.key)
+        
+      }
+
+    }
+
+    //查询---找最小值
+
+    min(){
+      return this.minNode(this.root)
+    }
+
+    minNode(node){
+      let curr=node
+      while(curr!==null&&curr.left!==null){
+        curr=curr.left
+      }
+      return curr
+
+    }
+
+    //查询---找知否有一个值在树里面
+
+    search(key){
+      return this.searchNode(this.root,key)
+    }
+
+    searchNode(node,key){
+      if(node===null){
+        return false
+      }
+      if(this.compareFn(node,key)===1){
+        return this.searchNode(node.left, key)
+      }else if(this.compareFn(node, key) === -1){
+        return this.searchNode(node.right, key)
+      }else{
+        return true
+      }
+    }
+
+
+    //删除
+    remove(key){
+        this.root=this.removeNode(this.root,key)
+       
+    }
+
+    removeNode(node,key){
+      if(node===null){
+        return null
+      }
+      if(this.compareFn(node.key,key)===1){
+        node.left=this.removeNode(node.left,key)
+        return node
+
+      }else if(this.compareFn(node.key, key) === -1){
+        node.right=this.removeNode(node.right, key)
+        return node
+      }else{
+        //第一种情况，树中最后一排的node，进行删除
+        if(node.left===null&&node.right===null){
+          node=null
+          return node
+        }
+      //第二种情况，左边有，或者右边有
+        if(node.left===null){
+          node = node.right
+          return node
+        }else if(node.right === null){
+          node=node.left
+          return node
+        }
+
+        //第三种情况，左右两边都有子node
+
+        //从右边找到最小的情况的node
+        const target=this.minNode(node.right)
+        //找到key值,覆盖
+        node.key=target.key
+       // 找到node.right，覆盖
+        node.right=this.removeNode(node.right,target.key)
+        return node
+
+      }
+    }
+
+
+   //二叉堆：特殊的二叉树
+   //满足二叉堆的条件：
+   // 1.每一层都有左右两个子节点，除非仅有最后一层的右节点为空
+   // 2.二叉堆不是最小堆就是最大堆，最小堆允许你快速导出树堆最小值，最大堆允许你快速导出树堆最大值。
+   //   每个子节点都比root大，root就是最小值（最小堆）；每个子节点都比root小，root就是最大值（最大堆）
 
 
 
   }
 
+  
+
+
   let  mytree=new BST()
-  mytree.insert(100)
-   mytree.insert(80)
-    mytree.insert(70)
-     mytree.insert(90)
-      mytree.insert(110)
-  mytree.preOrderMap((value)=>{
-    console.log(value)
-  })
+  mytree.insert(3)
+  mytree.insert(2)
+  mytree.insert(5)
+    mytree.insert(4)
+ mytree.insert(6)
+  //下面是对insert进行的测试
+  // mytree.insert(100)
+  //  mytree.insert(80)
+  //   mytree.insert(70)
+  //    mytree.insert(90)
+  //     mytree.insert(110)
+  // mytree.postOrderMap((value)=>{
+  //   console.log(value)
+  // })
+
+
 
 
   
