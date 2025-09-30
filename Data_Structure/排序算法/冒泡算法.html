@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Web App</title>
+  <style>
+    
+   
+      
+    
+  </style>
+</head>
+
+<body>
+  
+  
+  <script>
+    //冒泡排序比较相邻的两项，如果第一个比第二个大，交换它们。元素向上移动至正确的顺序，就好像气泡升到表面一样
+    //参考动画网址：visualgo  ------visualgo.net/zh/sorting?slide=1
+    //每一轮比较都是从array[0]开始往后两两比较大小，所以array中的最大值最先到达array的最后一个位置
+
+function swap(array,a,b){
+   let temp=array[a]
+   array[a]=array[b]
+   array[b]=temp
+
+   //解构的方式：[array[a],array[b]]=[array[b],array[a]]
+}
+
+   function bubbleSort(array){
+     const leng=array.length
+      for(let i=0;i<leng;i++){
+        for(let j=0;j<leng-1-i;j++){   //‘-i’的意思是优化冒泡算法，因为没有必要重复比较后面已经排列好的元素
+          if(array[j]>array[j+1]){
+            swap(array,j,j+1)
+          }
+
+        }
+
+      
+      }
+      console.log(array)
+
+   }
+
+   bubbleSort([5,3,4,2,1])
+   
+
+
+  
+  
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

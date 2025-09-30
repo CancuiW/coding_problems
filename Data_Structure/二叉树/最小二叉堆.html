@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Web App</title>
+    <style>
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        //二叉堆：特殊的二叉树
+            //满足二叉堆的条件：
+            // 1.每一层都有左右两个子节点，除非仅有最后一层的右节点为空
+            // 2.二叉堆不是最小堆就是最大堆，最小堆允许你快速导出树堆最小值，最大堆允许你快速导出树堆最大值。
+            //   每个子节点都比父节点大，root就是最小值（最小堆）；每个子节点都比root小，root就是最大值（最大堆）
+
+
+ 
+ 
+ //最小堆的封装
+  class MinHeap{
+    heap=[] //数组管理数据
+
+    //找到左侧节点的索引值
+    getLeftIndex(index){
+
+        return 2*index+1
+
+    }
+      //找到右侧节点的索引值
+     getRightIndex(index) {
+
+         return 2 * index + 2
+
+     }
+
+    // 根据子节点在[]中的索引值进行推算出其父节点的索引值
+     getParentIndex(index){
+        return Math.floor((index-1)/2)
+     }
+
+
+     //插入一个值，必须按照二叉堆的特性进行放置元素
+     //首先是放置在heap[]的最后一个位置，然后根据index值找到父级的index进行数值上的大小比较，
+     //如果父级上的数值比子级大，那么就树值相互交换，最后更新父级index，用while循环更新index，parent Index值，层层比较直至结束
+     insert(value){
+        if(value!==null){
+            this.heap.push(value)
+            //与父节点逐级对比，如果比父节点小，交换位置
+            this.shiftUp(this.heap.length-1)
+            return true
+            
+        }
+        return false
+     }
+
+     compareFn(a,b){
+        if(a===b){
+            return 0
+        }
+        return a<b?-1:1
+     }
+
+     shiftUp(index){
+        let parent=this.getParentIndex(index)
+
+        while(index>0&&this.compareFn(this.heap[parent],this.heap[index])===1){
+
+            this.swap(this.heap,parent,index)
+            index=parent
+            parent=this.getParentIndex(index)
+
+        }
+
+     }
+
+     swap(array,a,b){
+        let temp=array[a]
+        array[a]=array[b]
+        array[b]=temp
+
+
+     }
+
+     size(){
+        return this.heap.length
+     }
+     isEmpty(){
+        return this.size()===0
+     }
+     //找到最小值
+     findTarget(){
+        return this.heap[0]
+
+     }
+    //删除最小值
+    //思路就是：将heap[]中的最后一个值（最大）和root（最小）相交换，
+    //然后找到这个root的左右两个子节点，比较与最小的子节点进行数值交换
+    //最后利用递归将后续的子节点进行比较交换，指导没有子节点
+     extract(){
+        if(this.isEmpty()){
+            return
+        }
+
+        if(this.size()===1){
+            return this.heap.shift()
+        }
+
+        let removed=this.heap[0]
+        this.heap[0]=this.heap.pop()
+
+        this.shiftDown(0)
+
+        return removed
+
+     }
+
+     shiftDown(index){
+        let current=index
+        let leftIndex= this.getLeftIndex(index)//3
+         let rightIndex = this.getRightIndex(index)//4
+
+         if(leftIndex <this.size()&&this.compareFn(this.heap[current],this.heap[leftIndex])===1){
+            current= leftIndex
+         }
+
+        if (rightIndex < this.size() &&this.compareFn(this.heap[current], this.heap[rightIndex]) === 1) {
+             current = rightIndex
+         }
+
+         if(current!==index){
+            this.swap(this.heap,index,current)
+            this.shiftDown(current)
+         }
+
+
+
+
+     }
+
+
+
+
+
+
+
+
+ }
+
+
+let heap=new MinHeap()
+heap.insert(1)
+ heap.insert(2)
+   heap.insert(3)
+     heap.insert(9)
+
+      heap.insert(5)
+       heap.insert(6)
+        heap.insert(7)
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
